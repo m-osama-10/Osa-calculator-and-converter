@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useUI, usePreferences } from "@/store";
 import { CATEGORIES, REGISTRY } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
+import { AdBanner } from "@/components/ads/adsense-ad";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -104,6 +105,11 @@ export function Sidebar() {
           })}
         </div>
       </nav>
+
+      {/* Sidebar ad */}
+      <div className="px-3 pb-2 shrink-0">
+        <AdBanner className="my-0" label="Sponsored" />
+      </div>
 
       {/* Footer */}
       <div className="p-4 border-t text-[11px] text-muted-foreground space-y-1 shrink-0">

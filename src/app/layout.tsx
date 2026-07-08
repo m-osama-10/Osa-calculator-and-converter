@@ -51,6 +51,10 @@ export const metadata: Metadata = {
     description: "500+ calculators & converters in one beautiful PWA.",
   },
   category: "education",
+  // Google AdSense publisher ID for verification
+  other: {
+    "google-adsense-account": "ca-pub-3474575203383848",
+  },
 };
 
 export const viewport: Viewport = {
@@ -68,6 +72,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Google AdSense Script — loaded once globally */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474575203383848"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
       >

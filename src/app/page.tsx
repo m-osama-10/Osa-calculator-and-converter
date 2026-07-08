@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, Search, Star, History as HistoryIcon, TrendingUp,
@@ -13,6 +13,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { CalculatorCard } from "@/components/calculators/calculator-card";
 import { CalculatorModal } from "@/components/calculators/calculator-modal";
 import { KeyboardShortcutsHelp } from "@/components/layout/keyboard-shortcuts";
+import { AdBanner, AdSquare, AdInFeed, AdVertical } from "@/components/ads/adsense-ad";
 import { useUI, usePreferences, useFavorites, useHistory } from "@/store";
 import { CATEGORIES, REGISTRY, getPopularCalculators, searchCalculators, getByCategory } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
@@ -31,6 +32,10 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
+      {/* Top banner ad — shown on all pages below the header */}
+      <div className="border-b bg-muted/10 px-3 sm:px-6 py-1 no-print">
+        <AdBanner className="my-0" label="Sponsored" />
+      </div>
       <div className="flex flex-1 min-h-0">
         <Sidebar />
         <main className="flex-1 min-w-0 overflow-y-auto">
@@ -169,6 +174,9 @@ function HomeView() {
         </div>
       </section>
 
+      {/* Ad after hero */}
+      <AdBanner className="mb-8" label="Sponsored" />
+
       {/* Categories grid */}
       <section className="mb-8">
         <div className="flex items-center justify-between mb-4">
@@ -205,6 +213,9 @@ function HomeView() {
         </div>
       </section>
 
+      {/* Ad between sections */}
+      <AdSquare className="mb-8" label="Sponsored" />
+
       {/* Popular */}
       <section>
         <div className="flex items-center justify-between mb-4">
@@ -220,10 +231,20 @@ function HomeView() {
           {popular.map((calc, i) => {
             const cat = REGISTRY.find((r) => r.calculator.id === calc.id)?.category;
             if (!cat) return null;
-            return <CalculatorCard key={calc.id} calculator={calc} category={cat} index={i} />;
+            // Insert in-feed ad after the 4th and 8th cards
+            return (
+              <Fragment key={calc.id}>
+                {i === 4 && <AdInFeed className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />}
+                {i === 8 && <AdInFeed className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />}
+                <CalculatorCard calculator={calc} category={cat} index={i} />
+              </Fragment>
+            );
           })}
         </div>
       </section>
+
+      {/* Bottom ad on home */}
+      <AdBanner className="mt-8" label="Sponsored" />
     </div>
   );
 }
@@ -258,13 +279,27 @@ function CategoryView({ categoryId }: { categoryId: string }) {
         </div>
       </div>
 
+      {/* Ad after category header */}
+      <AdBanner className="mb-6" label="Sponsored" />
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {calcs.map((c, i) => {
           const c2 = REGISTRY.find((r) => r.calculator.id === c.id)?.category;
           if (!c2) return null;
-          return <CalculatorCard key={c.id} calculator={c} category={c2} index={i} />;
+          // Insert in-feed ads after every 8 cards
+          return (
+            <Fragment key={c.id}>
+              {i > 0 && i % 8 === 0 && (
+                <AdInFeed className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />
+              )}
+              <CalculatorCard calculator={c} category={c2} index={i} />
+            </Fragment>
+          );
         })}
       </div>
+
+      {/* Bottom ad on category page */}
+      <AdBanner className="mt-6" label="Sponsored" />
     </div>
   );
 }
@@ -291,6 +326,9 @@ function FavoritesView() {
         <p className="text-sm text-white/90">{favs.length} {t(lang, "calculators")}</p>
       </div>
 
+      {/* Ad on favorites page */}
+      <AdBanner className="mb-6" label="Sponsored" />
+
       {favs.length === 0 ? (
         <EmptyState
           icon="Star"
@@ -304,6 +342,9 @@ function FavoritesView() {
           ))}
         </div>
       )}
+
+      {/* Bottom ad */}
+      <AdBanner className="mt-6" label="Sponsored" />
     </div>
   );
 }
@@ -345,6 +386,9 @@ function HistoryView() {
           )}
         </div>
       </div>
+
+      {/* Ad on history page */}
+      <AdBanner className="mb-6" label="Sponsored" />
 
       {history.length === 0 ? (
         <EmptyState
@@ -397,6 +441,9 @@ function HistoryView() {
           })}
         </div>
       )}
+
+      {/* Bottom ad on history page */}
+      <AdBanner className="mt-6" label="Sponsored" />
     </div>
   );
 }
@@ -419,6 +466,9 @@ function SearchView({ query }: { query: string }) {
         </h1>
       </div>
 
+      {/* Ad at top of search results */}
+      <AdBanner className="mb-6" label="Sponsored" />
+
       {results.length === 0 ? (
         <EmptyState
           icon="Search"
@@ -428,10 +478,18 @@ function SearchView({ query }: { query: string }) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {results.map(({ calculator, category }, i) => (
-            <CalculatorCard key={calculator.id} calculator={calculator} category={category} index={i} />
+            <Fragment key={calculator.id}>
+              {i > 0 && i % 8 === 0 && (
+                <AdInFeed className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />
+              )}
+              <CalculatorCard calculator={calculator} category={category} index={i} />
+            </Fragment>
           ))}
         </div>
       )}
+
+      {/* Bottom ad on search page */}
+      <AdBanner className="mt-6" label="Sponsored" />
     </div>
   );
 }
@@ -458,22 +516,26 @@ function Footer() {
   const lang = usePreferences((s) => s.language);
   return (
     <footer className="mt-auto border-t bg-card/50 py-6 px-4 sm:px-6 no-print">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-        <div className="flex items-center gap-2">
-          <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">
-            <Calculator className="h-3 w-3 text-white" />
+      <div className="max-w-7xl mx-auto">
+        {/* Footer ad */}
+        <AdBanner className="mb-4" label="Sponsored" />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">
+              <Calculator className="h-3 w-3 text-white" />
+            </div>
+            <span className="font-medium text-foreground">{t(lang, "appName")}</span>
+            <span className="opacity-50">·</span>
+            <span>{t(lang, "footerText")}</span>
           </div>
-          <span className="font-medium text-foreground">{t(lang, "appName")}</span>
-          <span className="opacity-50">·</span>
-          <span>{t(lang, "footerText")}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1">
-            <Zap className="h-3 w-3 text-emerald-500" />
-            {t(lang, "offlineReady")}
-          </span>
-          <span className="opacity-50">·</span>
-          <span>{t(lang, "madeWith")}</span>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1">
+              <Zap className="h-3 w-3 text-emerald-500" />
+              {t(lang, "offlineReady")}
+            </span>
+            <span className="opacity-50">·</span>
+            <span>{t(lang, "madeWith")}</span>
+          </div>
         </div>
       </div>
     </footer>
