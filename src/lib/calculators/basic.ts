@@ -3,167 +3,43 @@
 // ============================================================================
 
 import type { Calculator } from "../types";
-import { num, fmt, safeEval, factorial } from "../calculator-utils";
+import { num, fmt } from "../calculator-utils";
 
 export const basicCalculators: Calculator[] = [
   // -------------------------------------------------------------------------
-  // Standard Calculator (live expression evaluator)
+  // Standard Calculator (button-based interface)
   // -------------------------------------------------------------------------
   {
     id: "standard",
     category: "basic",
     names: { en: "Standard Calculator", ar: "حاسبة قياسية" },
     descriptions: {
-      en: "Evaluate arithmetic expressions with +, −, ×, ÷, ^, %, parentheses, π and e.",
-      ar: "احسب التعابير الحسابية باستخدام +، −، ×، ÷، ^، %، الأقواس، π و e.",
+      en: "Button-based calculator with numeric keypad, +, −, ×, ÷, %, parentheses and live preview.",
+      ar: "حاسبة بأزرار: لوحة أرقام، +، −، ×، ÷، %، أقواس ومعاينة مباشرة.",
     },
-    keywords: ["standard", "arithmetic", "basic", "حاسبة", "حساب", "قياسي"],
+    keywords: ["standard", "arithmetic", "basic", "calculator", "حاسبة", "حساب", "قياسي"],
     icon: "Calculator",
     live: true,
-    fields: [
-      {
-        key: "expr",
-        names: { en: "Expression", ar: "التعبير" },
-        type: "text",
-        placeholder: { en: "e.g. 2 + 3 * (4 - 1) ^ 2", ar: "مثال: 2 + 3 * (4 - 1) ^ 2" },
-        default: "2 + 3 * (4 - 1) ^ 2",
-        help: {
-          en: "Operators: + − × ÷ ^ %  Functions: sin cos tan log ln sqrt abs exp  Constants: π e",
-          ar: "العمليات: + − × ÷ ^ %  الدوال: sin cos tan log ln sqrt abs exp  الثوابت: π e",
-        },
-      },
-    ],
-    compute: (v) => {
-      const expr = String(v.expr ?? "").trim();
-      if (!expr) return { results: [], error: { en: "Enter an expression", ar: "أدخل تعبيرًا" } };
-      const result = safeEval(expr);
-      if (!Number.isFinite(result)) {
-        return {
-          results: [],
-          error: { en: "Invalid expression", ar: "تعبير غير صالح" },
-        };
-      }
-      return {
-        results: [
-          {
-            label: { en: "Result", ar: "النتيجة" },
-            value: fmt(result, 10),
-            primary: true,
-          },
-        ],
-        formula: `${expr} = ${fmt(result, 10)}`,
-        explanation: {
-          en: "Standard arithmetic evaluation respecting operator precedence (PEMDAS). Functions and constants are evaluated using JavaScript's Math library.",
-          ar: "تقييم حسابي قياسي يراعي أسبقية العمليات (PEMDAS). يتم تقييم الدوال والثوابت باستخدام مكتبة Math في JavaScript.",
-        },
-      };
-    },
+    fields: [],
+    compute: () => ({ results: [] }),
   },
 
   // -------------------------------------------------------------------------
-  // Scientific Calculator
+  // Scientific Calculator (button-based interface with memory + history)
   // -------------------------------------------------------------------------
   {
     id: "scientific",
     category: "basic",
     names: { en: "Scientific Calculator", ar: "حاسبة علمية" },
     descriptions: {
-      en: "Trigonometry, logarithms, exponentials, factorials & powers in degrees or radians.",
-      ar: "حساب المثلثات، اللوغاريتمات، الأُس، المضروب والقوى بالدرجات أو الراديان.",
+      en: "Full scientific calculator: sin/cos/tan, log/ln, √, x², xʸ, π, e, n!, DEG/RAD, memory (MC/MR/M+/M-/MS) and history.",
+      ar: "حاسبة علمية كاملة: sin/cos/tan، log/ln، √، x²، xʸ، π، e، n!، DEG/RAD، ذاكرة (MC/MR/M+/M-/MS) وسجل.",
     },
-    keywords: ["scientific", "trig", "log", "sin", "cos", "tan", "factorial", "علمي"],
+    keywords: ["scientific", "trig", "log", "sin", "cos", "tan", "factorial", "memory", "علمي", "ذاكرة"],
     icon: "FunctionSquare",
     live: true,
-    fields: [
-      {
-        key: "angleMode",
-        names: { en: "Angle mode", ar: "وضع الزاوية" },
-        type: "select",
-        default: "rad",
-        options: [
-          { value: "rad", label: { en: "Radians", ar: "راديان" } },
-          { value: "deg", label: { en: "Degrees", ar: "درجات" } },
-        ],
-      },
-      {
-        key: "expr",
-        names: { en: "Expression", ar: "التعبير" },
-        type: "text",
-        placeholder: { en: "e.g. sin(π/4) + log(1000) + 5!", ar: "مثال: sin(π/4) + log(1000) + 5!" },
-        default: "sin(π/4) + log(1000) + 5!",
-        help: {
-          en: "Supports sin, cos, tan, asin, acos, atan, log (base 10), ln, exp, sqrt, abs, factorial (!), π, e",
-          ar: "يدعم sin, cos, tan, asin, acos, atan, log (أساس 10), ln, exp, sqrt, abs, المضروب (!), π, e",
-        },
-      },
-    ],
-    compute: (v) => {
-      const mode = String(v.angleMode ?? "rad");
-      let expr = String(v.expr ?? "").trim();
-      if (!expr) return { results: [], error: { en: "Enter an expression", ar: "أدخل تعبيرًا" } };
-
-      if (mode === "deg") {
-        expr = expr
-          .replace(/sin\(/g, "sin((pi/180)*")
-          .replace(/cos\(/g, "cos((pi/180)*")
-          .replace(/tan\(/g, "tan((pi/180)*")
-          .replace(/asin\(/g, "(180/pi)*asin(")
-          .replace(/acos\(/g, "(180/pi)*acos(")
-          .replace(/atan\(/g, "(180/pi)*atan(")
-          .replace(/\bpi\b/g, String(Math.PI));
-      } else {
-        expr = expr.replace(/\bpi\b/g, String(Math.PI));
-      }
-
-      const cleaned = expr
-        .replace(/\^/g, "**")
-        .replace(/(\d+(?:\.\d+)?)!/g, (_, n) => String(factorial(Number(n))))
-        .replace(/log\(/g, "Math.log10(")
-        .replace(/ln\(/g, "Math.log(")
-        .replace(/sin\(/g, "Math.sin(")
-        .replace(/cos\(/g, "Math.cos(")
-        .replace(/tan\(/g, "Math.tan(")
-        .replace(/asin\(/g, "Math.asin(")
-        .replace(/acos\(/g, "Math.acos(")
-        .replace(/atan\(/g, "Math.atan(")
-        .replace(/sqrt\(/g, "Math.sqrt(")
-        .replace(/exp\(/g, "Math.exp(")
-        .replace(/abs\(/g, "Math.abs(")
-        .replace(/\be\b/g, String(Math.E));
-
-      try {
-        const r = new Function(`"use strict"; return (${cleaned});`)();
-        if (typeof r !== "number" || !Number.isFinite(r)) throw new Error();
-        return {
-          results: [
-            {
-              label: { en: "Result", ar: "النتيجة" },
-              value: fmt(r, 10),
-              primary: true,
-            },
-            {
-              label: { en: "Scientific", ar: "علمي" },
-              value: r.toExponential(6),
-            },
-          ],
-          formula: `${String(v.expr)} = ${fmt(r, 10)}`,
-          steps: [
-            {
-              description: {
-                en: `Evaluated in ${mode === "deg" ? "degrees" : "radians"} mode`,
-                ar: `تم التقييم في وضع ${mode === "deg" ? "الدرجات" : "الراديان"}`,
-              },
-            },
-          ],
-          explanation: {
-            en: "Scientific evaluation using Math functions. Trigonometric input is interpreted in the chosen angle mode.",
-            ar: "تقييم علمي باستخدام دوال Math. يتم تفسير المدخلات المثلثية حسب وضع الزاوية المختار.",
-          },
-        };
-      } catch {
-        return { results: [], error: { en: "Invalid expression", ar: "تعبير غير صالح" } };
-      }
-    },
+    fields: [],
+    compute: () => ({ results: [] }),
   },
 
   // -------------------------------------------------------------------------

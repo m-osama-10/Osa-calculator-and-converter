@@ -31,9 +31,9 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <div className="flex flex-1">
+      <div className="flex flex-1 min-h-0">
         <Sidebar />
-        <main className="flex-1 min-w-0">
+        <main className="flex-1 min-w-0 overflow-y-auto">
           <AnimatePresence mode="wait">
             {view === "home" && (
               <motion.div

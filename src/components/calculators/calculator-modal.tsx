@@ -21,6 +21,7 @@ import { getCalculatorById, REGISTRY } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
 import { t } from "@/lib/i18n";
 import type { Calculator, Field, ComputeResult } from "@/lib/types";
+import { StandardCalculator, ScientificCalculator } from "@/components/calculators/button-calculators";
 import { cn } from "@/lib/utils";
 
 /** Wrapper that mounts a fresh inner component when the calculator changes. */
@@ -201,6 +202,49 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
   };
 
   if (!calc || !cat) return null;
+
+  // Special-case: button-based calculators (Standard & Scientific) get a custom full-width UI
+  if (calc.id === "standard" || calc.id === "scientific") {
+    return (
+      <>
+        {/* Header */}
+        <div className="flex items-start gap-3 p-4 sm:p-5 border-b no-print">
+          <div className={cn("rounded-xl bg-gradient-to-br p-2.5 text-white shadow-md shrink-0", cat.color)}>
+            <Icon name={calc.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h2 className="font-bold text-base sm:text-lg leading-tight">{calc.names[lang]}</h2>
+            <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">{calc.descriptions[lang]}</p>
+          </div>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => toggleFav(calc.id)}
+              aria-label="Toggle favorite"
+              className={isFav ? "text-amber-400" : ""}
+            >
+              <Star className={cn("h-4 w-4", isFav && "fill-current")} />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={onClose} aria-label="Close">
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Body — full-width button calculator */}
+        <ScrollArea className="flex-1">
+          <div className="p-4 sm:p-6 max-w-2xl mx-auto">
+            {calc.id === "standard" ? (
+              <StandardCalculator calcId={calc.id} />
+            ) : (
+              <ScientificCalculator calcId={calc.id} />
+            )}
+          </div>
+        </ScrollArea>
+      </>
+    );
+  }
 
   return (
     <>

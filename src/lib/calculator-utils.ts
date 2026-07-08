@@ -63,6 +63,8 @@ export function safeEval(expr: string): number {
     .replace(/\^/g, "**")
     .replace(/π/g, String(Math.PI))
     .replace(/τ/g, String(2 * Math.PI))
+    // Percentage: number followed by % → (number / 100)
+    .replace(/(\d+(?:\.\d+)?)%/g, "($1/100)")
     .replace(/√\(/g, "Math.sqrt(")
     .replace(/√(\d+(\.\d+)?)/g, "Math.sqrt($1)")
     .replace(/\bsqrt\(/g, "Math.sqrt(")

@@ -120,15 +120,30 @@ interface UIState {
   setSidebarOpen: (open: boolean) => void;
 }
 
-export const useUI = create<UIState>((set) => ({
+export const useUI = create<UIState>((set, get) => ({
   view: "home",
   activeCategoryId: null,
   searchQuery: "",
   activeCalculatorId: null,
   sidebarOpen: false,
-  setView: (v) => set({ view: v, activeCategoryId: v === "category" ? null : null }),
-  setActiveCategory: (id) => set({ activeCategoryId: id, view: "category" }),
-  setSearchQuery: (q) => set({ searchQuery: q, view: q ? "search" : "home" }),
+  setView: (v) =>
+    set({
+      view: v,
+      activeCategoryId: null,
+      searchQuery: "",
+    }),
+  setActiveCategory: (id) =>
+    set({
+      activeCategoryId: id,
+      view: "category",
+      searchQuery: "",
+    }),
+  setSearchQuery: (q) =>
+    // Only change view based on query content; don't override "category" view when clearing
+    set((s) => ({
+      searchQuery: q,
+      view: q ? "search" : s.view === "search" ? "home" : s.view,
+    })),
   openCalculator: (id) => set({ activeCalculatorId: id }),
   closeCalculator: () => set({ activeCalculatorId: null }),
   setSidebarOpen: (open) => set({ sidebarOpen: open }),
