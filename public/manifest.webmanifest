@@ -1,0 +1,41 @@
+{
+  "name": "Universal Calculator Hub",
+  "short_name": "Calculator Hub",
+  "description": "500+ calculators & converters in one beautiful PWA — math, chemistry, physics, finance, health, engineering and more. Bilingual (Arabic/English) with RTL support and offline mode.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed",
+  "orientation": "any",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "BMI Calculator",
+      "short_name": "BMI",
+      "url": "/?calc=bmi",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Loan / EMI",
+      "short_name": "EMI",
+      "url": "/?calc=loan-emi",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Compound Interest",
+      "short_name": "Interest",
+      "url": "/?calc=compound-interest",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    }
+  ]
+}
