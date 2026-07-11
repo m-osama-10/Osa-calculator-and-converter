@@ -13,7 +13,7 @@ export const CATEGORIES: Category[] = [
       ar: "حاسبات قياسية وعلمية وبرمجية ونسب مئوية",
     },
     icon: "Calculator",
-    color: "from-blue-700 to-blue-900",
+    color: "from-violet-500 to-purple-600",
   },
   {
     id: "converters",
@@ -23,7 +23,7 @@ export const CATEGORIES: Category[] = [
       ar: "الطول، الوزن، المساحة، الحجم، الحرارة، البيانات والمزيد",
     },
     icon: "Ruler",
-    color: "from-cyan-600 to-blue-800",
+    color: "from-cyan-500 to-blue-500",
   },
   {
     id: "chemistry",
@@ -33,7 +33,7 @@ export const CATEGORIES: Category[] = [
       ar: "الكتلة المولية، المولارية، الأس الهيدروجيني، قوانين الغازات",
     },
     icon: "FlaskConical",
-    color: "from-teal-600 to-blue-900",
+    color: "from-emerald-500 to-teal-600",
   },
   {
     id: "physics",
@@ -43,7 +43,7 @@ export const CATEGORIES: Category[] = [
       ar: "السرعة، القوة، الطاقة، الزخم وحركة المقذوفات",
     },
     icon: "Atom",
-    color: "from-blue-500 to-blue-800",
+    color: "from-orange-500 to-red-500",
   },
   {
     id: "math",
@@ -53,7 +53,7 @@ export const CATEGORIES: Category[] = [
       ar: "الجبر، الهندسة، حساب المثلثات، التفاضل والمصفوفات",
     },
     icon: "Sigma",
-    color: "from-indigo-600 to-blue-900",
+    color: "from-rose-500 to-pink-600",
   },
   {
     id: "health",
@@ -63,7 +63,7 @@ export const CATEGORIES: Category[] = [
       ar: "مؤشر كتلة الجسم، معدل الأيض، نسبة الدهون، الماء ومعدل النبض",
     },
     icon: "HeartPulse",
-    color: "from-blue-600 to-blue-900",
+    color: "from-red-500 to-rose-600",
   },
   {
     id: "nutrition",
@@ -73,7 +73,7 @@ export const CATEGORIES: Category[] = [
       ar: "السعرات، العناصر الغذائية، الألياف، الفيتامينات",
     },
     icon: "Apple",
-    color: "from-green-600 to-blue-900",
+    color: "from-lime-500 to-green-600",
   },
   {
     id: "finance",
@@ -83,7 +83,7 @@ export const CATEGORIES: Category[] = [
       ar: "القروض، الرهن، القسط، الفائدة، العائد والضرائب",
     },
     icon: "Landmark",
-    color: "from-amber-600 to-blue-900",
+    color: "from-amber-500 to-yellow-600",
   },
   {
     id: "engineering",
@@ -93,7 +93,7 @@ export const CATEGORIES: Category[] = [
       ar: "ميكانيكية، كهربائية، مدنية، تكييف وميكانيكا الموائع",
     },
     icon: "Cog",
-    color: "from-slate-600 to-blue-900",
+    color: "from-slate-500 to-gray-700",
   },
   {
     id: "laboratory",
@@ -103,7 +103,7 @@ export const CATEGORIES: Category[] = [
       ar: "تحضير المحاليل، التخفيف، المختزن والكواشف",
     },
     icon: "TestTube",
-    color: "from-cyan-600 to-blue-800",
+    color: "from-cyan-500 to-blue-500",
   },
   {
     id: "computer",
@@ -113,7 +113,7 @@ export const CATEGORIES: Category[] = [
       ar: "الثنائي، السداسي عشر، IP، التخزين، وقت التنزيل",
     },
     icon: "Cpu",
-    color: "from-indigo-600 to-blue-900",
+    color: "from-rose-500 to-pink-600",
   },
   {
     id: "datetime",
@@ -123,7 +123,7 @@ export const CATEGORIES: Category[] = [
       ar: "العمر، فرق التاريخ، أيام العمل، العد التنازلي",
     },
     icon: "CalendarClock",
-    color: "from-sky-600 to-blue-900",
+    color: "from-sky-500 to-indigo-500",
   },
   {
     id: "construction",
@@ -133,7 +133,7 @@ export const CATEGORIES: Category[] = [
       ar: "الخرسانة، الأسمنت، الطوب، البلاط، الطلاء والصلب",
     },
     icon: "Hammer",
-    color: "from-stone-600 to-blue-900",
+    color: "from-stone-500 to-amber-700",
   },
   {
     id: "everyday",
@@ -143,7 +143,7 @@ export const CATEGORIES: Category[] = [
       ar: "تكلفة الوقود، الفواتير، البقشيش، تقسيم الفاتورة",
     },
     icon: "Wallet",
-    color: "from-blue-600 to-indigo-900",
+    color: "from-fuchsia-500 to-purple-600",
   },
 ];
 
