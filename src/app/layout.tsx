@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     title: "Zoma Calculator",
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg" }],
+    icon: [{ url: "/logo.png", type: "image/png", sizes: "1254x1254" }],
+    apple: [{ url: "/logo.png", sizes: "1254x1254" }],
   },
   openGraph: {
     title: "Zoma Calculator and OSA Converter",

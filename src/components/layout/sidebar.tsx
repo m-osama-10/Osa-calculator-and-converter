@@ -42,9 +42,7 @@ export function Sidebar() {
       {/* Mobile header */}
       <div className="flex items-center justify-between p-4 lg:hidden shrink-0">
         <span className="font-bold flex items-center gap-2">
-          <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">
-            <Calculator className="h-4 w-4 text-white" />
-          </div>
+          <img src="/logo.png" alt="Logo" className="h-8 w-8 rounded-lg object-contain" />
           Menu
         </span>
         <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>

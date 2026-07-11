@@ -87,9 +87,11 @@ export function Header() {
           className="flex items-center gap-2 px-1 sm:px-2 hover:opacity-80 transition"
           aria-label={t(lang, "appName")}
         >
-          <div className="rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-orange-500 p-1.5 shadow-md">
-            <Calculator className="h-5 w-5 text-white" />
-          </div>
+          <img
+            src="/logo.png"
+            alt={t(lang, "appName")}
+            className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg object-contain shadow-sm"
+          />
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="font-bold text-sm">{t(lang, "appName")}</span>
             <span className="text-[10px] text-muted-foreground">{t(lang, "tagline")}</span>
