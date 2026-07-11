@@ -18,8 +18,8 @@ const POPUNDER_SCRIPT_SRC = "https://pl30318260.effectivecpmnetwork.com/2b/9a/6b
 const STORAGE_KEY = "zoma-popunder-last-shown";
 
 // Configuration — adjust these to control frequency
-const DELAY_BEFORE_LOAD_MS = 30_000;       // 30 seconds after page load
-const COOLDOWN_HOURS = 2;                   // Show at most once every 2 hours
+const DELAY_BEFORE_LOAD_MS = 15_000;       // 15 seconds after page load
+const COOLDOWN_MINUTES = 1;                // Show at most once every 1 minute
 
 export function PopunderLoader() {
   useEffect(() => {
@@ -29,8 +29,8 @@ export function PopunderLoader() {
 
     if (lastShown) {
       const lastShownTime = parseInt(lastShown, 10);
-      const hoursSinceLastShow = (now - lastShownTime) / (1000 * 60 * 60);
-      if (hoursSinceLastShow < COOLDOWN_HOURS) {
+      const minutesSinceLastShow = (now - lastShownTime) / (1000 * 60);
+      if (minutesSinceLastShow < COOLDOWN_MINUTES) {
         // Still in cooldown — don't load the popunder
         return;
       }
