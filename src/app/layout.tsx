@@ -79,6 +79,16 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474575203383848"
           crossOrigin="anonymous"
         />
+        {/* Social Bar ad script (EffectiveCPMNetwork) */}
+        <script
+          async
+          src="https://pl30318261.effectivecpmnetwork.com/09/06/bd/0906bd7626f8048137180fb19d3d9ffa.js"
+        />
+        {/* Popunder ad script (EffectiveCPMNetwork) */}
+        <script
+          async
+          src="https://pl30318260.effectivecpmnetwork.com/2b/9a/6b/2b9a6b655fa25e8a7985dc74f25da262.js"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}

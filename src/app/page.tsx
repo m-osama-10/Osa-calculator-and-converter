@@ -14,6 +14,7 @@ import { CalculatorCard } from "@/components/calculators/calculator-card";
 import { CalculatorModal } from "@/components/calculators/calculator-modal";
 import { KeyboardShortcutsHelp } from "@/components/layout/keyboard-shortcuts";
 import { AdBanner, AdSquare, AdInFeed, AdVertical } from "@/components/ads/adsense-ad";
+import { HPFBanner } from "@/components/ads/hpf-banner";
 import { useUI, usePreferences, useFavorites, useHistory } from "@/store";
 import { CATEGORIES, REGISTRY, getPopularCalculators, searchCalculators, getByCategory } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
@@ -32,9 +33,10 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      {/* Top banner ad — shown on all pages below the header */}
-      <div className="border-b bg-muted/10 px-3 sm:px-6 py-1 no-print">
+      {/* Top banner ads — shown on all pages below the header */}
+      <div className="border-b bg-muted/10 px-3 sm:px-6 py-1 no-print space-y-1">
         <AdBanner className="my-0" label="Sponsored" />
+        <HPFBanner className="my-0" label="Advertisement" />
       </div>
       <div className="flex flex-1 min-h-0">
         <Sidebar />
@@ -175,7 +177,8 @@ function HomeView() {
       </section>
 
       {/* Ad after hero */}
-      <AdBanner className="mb-8" label="Sponsored" />
+      <AdBanner className="mb-4" label="Sponsored" />
+      <HPFBanner className="mb-8" label="Advertisement" />
 
       {/* Categories grid */}
       <section className="mb-8">
@@ -244,7 +247,8 @@ function HomeView() {
       </section>
 
       {/* Bottom ad on home */}
-      <AdBanner className="mt-8" label="Sponsored" />
+      <AdBanner className="mt-4" label="Sponsored" />
+      <HPFBanner className="mt-8" label="Advertisement" />
     </div>
   );
 }
@@ -280,7 +284,8 @@ function CategoryView({ categoryId }: { categoryId: string }) {
       </div>
 
       {/* Ad after category header */}
-      <AdBanner className="mb-6" label="Sponsored" />
+      <AdBanner className="mb-4" label="Sponsored" />
+      <HPFBanner className="mb-6" label="Advertisement" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {calcs.map((c, i) => {
@@ -299,7 +304,8 @@ function CategoryView({ categoryId }: { categoryId: string }) {
       </div>
 
       {/* Bottom ad on category page */}
-      <AdBanner className="mt-6" label="Sponsored" />
+      <AdBanner className="mt-4" label="Sponsored" />
+      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -327,7 +333,8 @@ function FavoritesView() {
       </div>
 
       {/* Ad on favorites page */}
-      <AdBanner className="mb-6" label="Sponsored" />
+      <AdBanner className="mb-4" label="Sponsored" />
+      <HPFBanner className="mb-6" label="Advertisement" />
 
       {favs.length === 0 ? (
         <EmptyState
@@ -344,7 +351,8 @@ function FavoritesView() {
       )}
 
       {/* Bottom ad */}
-      <AdBanner className="mt-6" label="Sponsored" />
+      <AdBanner className="mt-4" label="Sponsored" />
+      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -388,7 +396,8 @@ function HistoryView() {
       </div>
 
       {/* Ad on history page */}
-      <AdBanner className="mb-6" label="Sponsored" />
+      <AdBanner className="mb-4" label="Sponsored" />
+      <HPFBanner className="mb-6" label="Advertisement" />
 
       {history.length === 0 ? (
         <EmptyState
@@ -443,7 +452,8 @@ function HistoryView() {
       )}
 
       {/* Bottom ad on history page */}
-      <AdBanner className="mt-6" label="Sponsored" />
+      <AdBanner className="mt-4" label="Sponsored" />
+      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -467,7 +477,8 @@ function SearchView({ query }: { query: string }) {
       </div>
 
       {/* Ad at top of search results */}
-      <AdBanner className="mb-6" label="Sponsored" />
+      <AdBanner className="mb-4" label="Sponsored" />
+      <HPFBanner className="mb-6" label="Advertisement" />
 
       {results.length === 0 ? (
         <EmptyState
@@ -489,7 +500,8 @@ function SearchView({ query }: { query: string }) {
       )}
 
       {/* Bottom ad on search page */}
-      <AdBanner className="mt-6" label="Sponsored" />
+      <AdBanner className="mt-4" label="Sponsored" />
+      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -518,7 +530,8 @@ function Footer() {
     <footer className="mt-auto border-t bg-card/50 py-6 px-4 sm:px-6 no-print">
       <div className="max-w-7xl mx-auto">
         {/* Footer ad */}
-        <AdBanner className="mb-4" label="Sponsored" />
+        <AdBanner className="mb-3" label="Sponsored" />
+        <HPFBanner className="mb-4" label="Advertisement" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">

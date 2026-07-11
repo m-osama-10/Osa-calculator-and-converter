@@ -23,6 +23,7 @@ import { t } from "@/lib/i18n";
 import type { Calculator, Field, ComputeResult } from "@/lib/types";
 import { StandardCalculator, ScientificCalculator } from "@/components/calculators/button-calculators";
 import { AdBanner } from "@/components/ads/adsense-ad";
+import { HPFBanner } from "@/components/ads/hpf-banner";
 import { cn } from "@/lib/utils";
 
 /** Wrapper that mounts a fresh inner component when the calculator changes. */
@@ -243,7 +244,8 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
             )}
           </div>
           {/* Ad at bottom of button calculator */}
-          <AdBanner className="mx-4 sm:mx-6 mb-4" label="Sponsored" />
+          <AdBanner className="mx-4 sm:mx-6 mb-3" label="Sponsored" />
+          <HPFBanner className="mx-4 sm:mx-6 mb-4" label="Advertisement" />
         </ScrollArea>
       </>
     );
@@ -352,7 +354,8 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
         </div>
 
         {/* Ad inside modal body */}
-        <AdBanner className="mx-4 sm:mx-6 mb-4" label="Sponsored" />
+        <AdBanner className="mx-4 sm:mx-6 mb-3" label="Sponsored" />
+        <HPFBanner className="mx-4 sm:mx-6 mb-4" label="Advertisement" />
       </ScrollArea>
     </>
   );

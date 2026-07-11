@@ -7,6 +7,7 @@ import { useUI, usePreferences } from "@/store";
 import { CATEGORIES, REGISTRY } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
 import { AdBanner } from "@/components/ads/adsense-ad";
+import { HPFBanner } from "@/components/ads/hpf-banner";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -107,8 +108,9 @@ export function Sidebar() {
       </nav>
 
       {/* Sidebar ad */}
-      <div className="px-3 pb-2 shrink-0">
+      <div className="px-3 pb-2 shrink-0 space-y-2">
         <AdBanner className="my-0" label="Sponsored" />
+        <HPFBanner className="my-0" label="Advertisement" />
       </div>
 
       {/* Footer */}
