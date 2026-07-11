@@ -1,11 +1,11 @@
 // ============================================================================
-// Universal Calculator Hub — Service Worker
+// Zoma Calculator and OSA Converter — Service Worker
 // ============================================================================
 // Provides offline-first caching for the PWA. Uses a stale-while-revalidate
 // strategy for navigations and a cache-first strategy for static assets.
 // ============================================================================
 
-const CACHE_VERSION = "uch-v1";
+const CACHE_VERSION = "zoma-v1";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -34,7 +34,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key.startsWith("uch-") && key !== STATIC_CACHE && key !== RUNTIME_CACHE)
+          .filter((key) => key.startsWith("zoma-") && key !== STATIC_CACHE && key !== RUNTIME_CACHE)
           .map((key) => caches.delete(key))
       )
     )

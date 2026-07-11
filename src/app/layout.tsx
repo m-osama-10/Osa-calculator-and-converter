@@ -17,44 +17,40 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Universal Calculator Hub — 500+ Calculators & Converters",
-    template: "%s · Universal Calculator Hub",
+    default: "Zoma Calculator and OSA Converter — 500+ Calculators & Converters",
+    template: "%s · Zoma Calculator and OSA Converter",
   },
   description:
-    "All-in-one calculator and conversion platform with 500+ calculators across 14 categories: math, chemistry, physics, finance, health, engineering, lab, computer, and more. Bilingual (Arabic/English) with RTL support, offline-ready PWA.",
+    "Zoma Calculator and OSA Converter — all-in-one calculator and conversion platform with 500+ calculators across 14 categories: math, chemistry, physics, finance, health, engineering, lab, computer, and more. Bilingual (Arabic/English) with RTL support, offline-ready PWA.",
   keywords: [
-    "calculator", "converter", "BMI", "molarity", "EMI", "loan", "compound interest",
+    "zoma", "calculator", "converter", "OSA", "BMI", "molarity", "EMI", "loan", "compound interest",
     "unit conversion", "chemistry", "physics", "math", "PWA", "Arabic", "English",
-    "حاسبة", "محوّل", "كيمياء", "فيزياء", "رياضيات", "مالية", "صحة",
+    "حاسبة", "محوّل", "زوما", "كيمياء", "فيزياء", "رياضيات", "مالية", "صحة",
   ],
-  authors: [{ name: "Universal Calculator Hub" }],
-  applicationName: "Universal Calculator Hub",
+  authors: [{ name: "Zoma Calculator and OSA Converter" }],
+  applicationName: "Zoma Calculator and OSA Converter",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Calculator Hub",
+    title: "Zoma Calculator",
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/icon.svg" }],
   },
   openGraph: {
-    title: "Universal Calculator Hub",
+    title: "Zoma Calculator and OSA Converter",
     description: "500+ calculators & converters in one beautiful PWA.",
     type: "website",
-    siteName: "Universal Calculator Hub",
+    siteName: "Zoma Calculator and OSA Converter",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Universal Calculator Hub",
+    title: "Zoma Calculator and OSA Converter",
     description: "500+ calculators & converters in one beautiful PWA.",
   },
   category: "education",
-  // Google AdSense publisher ID for verification
-  other: {
-    "google-adsense-account": "ca-pub-3474575203383848",
-  },
 };
 
 export const viewport: Viewport = {
@@ -73,11 +69,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google AdSense Script — loaded once globally */}
+        {/* Native Banner ad script (EffectiveCPMNetwork) */}
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474575203383848"
-          crossOrigin="anonymous"
+          data-cfasync="false"
+          src="https://pl30318327.effectivecpmnetwork.com/a43b4584a8c9a26bff900f3543d3ca80/invoke.js"
         />
         {/* Social Bar ad script (EffectiveCPMNetwork) */}
         <script

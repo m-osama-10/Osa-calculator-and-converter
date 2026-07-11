@@ -1,7 +1,7 @@
 {
-  "name": "Universal Calculator Hub",
-  "short_name": "Calculator Hub",
-  "description": "500+ calculators & converters in one beautiful PWA — math, chemistry, physics, finance, health, engineering and more. Bilingual (Arabic/English) with RTL support and offline mode.",
+  "name": "Zoma Calculator and OSA Converter",
+  "short_name": "Zoma Calculator",
+  "description": "Zoma Calculator and OSA Converter — 500+ calculators & converters in one beautiful PWA. Math, chemistry, physics, finance, health, engineering and more. Bilingual (Arabic/English) with RTL support and offline mode.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

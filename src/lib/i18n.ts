@@ -72,7 +72,7 @@ type Dictionary = Record<TranslationKey, string>;
 
 export const translations: Record<Language, Dictionary> = {
   en: {
-    appName: "Universal Calculator Hub",
+    appName: "Zoma Calculator and OSA Converter",
     tagline: "Hundreds of calculators & converters in one place",
     search: "Search",
     searchPlaceholder: "Search 500+ calculators… e.g. BMI, molarity, EMI",
@@ -131,7 +131,7 @@ export const translations: Record<Language, Dictionary> = {
     trending: "Trending",
   },
   ar: {
-    appName: "مركز الحاسبات الشامل",
+    appName: "Zoma حاسبة ومحوّل OSA",
     tagline: "مئات الحاسبات والمحولات في مكان واحد",
     search: "بحث",
     searchPlaceholder: "ابحث في أكثر من 500 حاسبة… مثل: مؤشر كتلة الجسم، المولارية، القسط",

@@ -1,5 +1,5 @@
 // ============================================================================
-// Universal Calculator Hub — Core Calculator Framework Types
+// Zoma Calculator and OSA Converter — Core Calculator Framework Types
 // ============================================================================
 // A "calculator" is just data + a pure compute function. The UI is rendered
 // dynamically from the input schema, so adding a new calculator requires NO
