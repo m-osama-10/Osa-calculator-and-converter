@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useUI, usePreferences } from "@/store";
 import { CATEGORIES, REGISTRY } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
-import { HPFBanner } from "@/components/ads/hpf-banner";
-import { HPFBanner468 } from "@/components/ads/hpf-banner-468";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -106,12 +104,6 @@ export function Sidebar() {
           })}
         </div>
       </nav>
-
-      {/* Sidebar ad */}
-      <div className="px-3 pb-2 shrink-0 space-y-2">
-        <HPFBanner468 className="my-0" label="Advertisement" />
-        <HPFBanner className="my-0" label="Advertisement" />
-      </div>
 
       {/* Footer */}
       <div className="p-4 border-t text-[11px] text-muted-foreground space-y-1 shrink-0">

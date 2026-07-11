@@ -6,11 +6,9 @@ import { cn } from "@/lib/utils";
 /**
  * HighPerformanceFormat 468x60 Banner Ad
  *
- * Renders a 468x60 banner ad using the HighPerformanceFormat ad network.
- * Each instance creates its own container and loads the invoke.js script
- * with the unique atOptions configuration.
+ * Renders a 468x60 banner ad. Should be placed ONLY ONCE per page.
  *
- * The ad key is: 85e39e91f2ba4011335641ab0060de3b
+ * Ad key: 85e39e91f2ba4011335641ab0060de3b
  */
 
 const AD_KEY = "85e39e91f2ba4011335641ab0060de3b";
@@ -24,13 +22,10 @@ function HPFBanner468Base({
   label?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
-    if (!containerRef.current || scriptLoadedRef.current) return;
-    scriptLoadedRef.current = true;
+    if (!containerRef.current) return;
 
-    // Set the atOptions configuration on window
     const w = window as unknown as { atOptions?: Record<string, unknown> };
     w.atOptions = {
       key: AD_KEY,
@@ -40,23 +35,13 @@ function HPFBanner468Base({
       params: {},
     };
 
-    // Create and inject the invoke.js script
     const script = document.createElement("script");
     script.src = AD_SCRIPT_SRC;
     script.async = true;
     script.type = "text/javascript";
 
-    // Clear container and append script
-    if (containerRef.current) {
-      containerRef.current.innerHTML = "";
-      containerRef.current.appendChild(script);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = "";
-      }
-    };
+    containerRef.current.innerHTML = "";
+    containerRef.current.appendChild(script);
   }, []);
 
   return (

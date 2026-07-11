@@ -1,18 +1,19 @@
 "use client";
 
-import { useEffect, useRef, memo } from "react";
+import { useEffect, memo } from "react";
 import { cn } from "@/lib/utils";
 
 /**
  * Native Banner Ad (EffectiveCPMNetwork)
  *
- * Renders a native banner ad. The invoke.js script is loaded globally in layout.tsx.
- * This component renders the container div that the ad network fills.
+ * Renders a native banner ad. Should be placed ONLY ONCE per page — the ad
+ * network fills a container with a fixed ID.
  *
  * Container ID: container-a43b4584a8c9a26bff900f3543d3ca80
  */
 
 const CONTAINER_ID = "container-a43b4584a8c9a26bff900f3543d3ca80";
+const SCRIPT_SRC = "https://pl30318327.effectivecpmnetwork.com/a43b4584a8c9a26bff900f3543d3ca80/invoke.js";
 
 function NativeBannerBase({
   className,
@@ -21,23 +22,26 @@ function NativeBannerBase({
   className?: string;
   label?: string;
 }) {
-  const mountedRef = useRef(false);
-
   useEffect(() => {
-    if (mountedRef.current) return;
-    mountedRef.current = true;
-    // The invoke.js script (loaded in <head>) populates all elements with the
-    // container ID. Since React renders the div dynamically, we may need to
-    // re-trigger the ad by re-injecting the script after mount.
-    const existing = document.getElementById(CONTAINER_ID);
-    if (existing && existing.children.length === 0) {
-      // Re-inject the invoke script to trigger ad render
-      const script = document.createElement("script");
-      script.async = true;
-      script.setAttribute("data-cfasync", "false");
-      script.src = "https://pl30318327.effectivecpmnetwork.com/a43b4584a8c9a26bff900f3543d3ca80/invoke.js";
-      document.body.appendChild(script);
-    }
+    // Inject the invoke.js script directly into the container after mount.
+    // This ensures the script runs after the container div exists in the DOM.
+    const container = document.getElementById(CONTAINER_ID);
+    if (!container) return;
+
+    // Clear any existing content
+    container.innerHTML = "";
+
+    // Create and inject the script directly into the container
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = SCRIPT_SRC;
+    container.appendChild(script);
+
+    return () => {
+      // Cleanup on unmount
+      container.innerHTML = "";
+    };
   }, []);
 
   return (

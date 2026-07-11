@@ -34,10 +34,9 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      {/* Top banner ads — shown on all pages below the header */}
-      <div className="border-b bg-muted/10 px-3 sm:px-6 py-1 no-print space-y-1">
+      {/* Top banner ad — HPF 728x90, shown on all pages (ONE instance only) */}
+      <div className="border-b bg-muted/10 px-3 sm:px-6 py-1 no-print">
         <HPFBanner className="my-0" label="Advertisement" />
-        <HPFBanner468 className="my-0" label="Advertisement" />
       </div>
       <div className="flex flex-1 min-h-0">
         <Sidebar />
@@ -177,9 +176,7 @@ function HomeView() {
         </div>
       </section>
 
-      {/* Ad after hero */}
-      <HPFBanner468 className="mb-4" label="Sponsored" />
-      <HPFBanner className="mb-8" label="Advertisement" />
+      <HPFBanner468 className="mb-8" label="Advertisement" />
 
       {/* Categories grid */}
       <section className="mb-8">
@@ -217,8 +214,7 @@ function HomeView() {
         </div>
       </section>
 
-      {/* Ad between sections */}
-      <NativeBanner className="mb-8" label="Sponsored" />
+      <NativeBanner className="mb-8" label="Advertisement" />
 
       {/* Popular */}
       <section>
@@ -238,8 +234,6 @@ function HomeView() {
             // Insert in-feed ad after the 4th and 8th cards
             return (
               <Fragment key={calc.id}>
-                {i === 4 && <HPFBanner className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />}
-                {i === 8 && <HPFBanner className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />}
                 <CalculatorCard calculator={calc} category={cat} index={i} />
               </Fragment>
             );
@@ -247,9 +241,6 @@ function HomeView() {
         </div>
       </section>
 
-      {/* Bottom ad on home */}
-      <HPFBanner468 className="mt-4" label="Sponsored" />
-      <HPFBanner className="mt-8" label="Advertisement" />
     </div>
   );
 }
@@ -284,9 +275,6 @@ function CategoryView({ categoryId }: { categoryId: string }) {
         </div>
       </div>
 
-      {/* Ad after category header */}
-      <HPFBanner468 className="mb-4" label="Sponsored" />
-      <HPFBanner className="mb-6" label="Advertisement" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {calcs.map((c, i) => {
@@ -295,18 +283,12 @@ function CategoryView({ categoryId }: { categoryId: string }) {
           // Insert in-feed ads after every 8 cards
           return (
             <Fragment key={c.id}>
-              {i > 0 && i % 8 === 0 && (
-                <HPFBanner className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />
-              )}
               <CalculatorCard calculator={c} category={c2} index={i} />
             </Fragment>
           );
         })}
       </div>
 
-      {/* Bottom ad on category page */}
-      <HPFBanner468 className="mt-4" label="Sponsored" />
-      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -333,9 +315,6 @@ function FavoritesView() {
         <p className="text-sm text-white/90">{favs.length} {t(lang, "calculators")}</p>
       </div>
 
-      {/* Ad on favorites page */}
-      <HPFBanner468 className="mb-4" label="Sponsored" />
-      <HPFBanner className="mb-6" label="Advertisement" />
 
       {favs.length === 0 ? (
         <EmptyState
@@ -351,9 +330,6 @@ function FavoritesView() {
         </div>
       )}
 
-      {/* Bottom ad */}
-      <HPFBanner468 className="mt-4" label="Sponsored" />
-      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -396,9 +372,6 @@ function HistoryView() {
         </div>
       </div>
 
-      {/* Ad on history page */}
-      <HPFBanner468 className="mb-4" label="Sponsored" />
-      <HPFBanner className="mb-6" label="Advertisement" />
 
       {history.length === 0 ? (
         <EmptyState
@@ -452,9 +425,6 @@ function HistoryView() {
         </div>
       )}
 
-      {/* Bottom ad on history page */}
-      <HPFBanner468 className="mt-4" label="Sponsored" />
-      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -477,9 +447,6 @@ function SearchView({ query }: { query: string }) {
         </h1>
       </div>
 
-      {/* Ad at top of search results */}
-      <HPFBanner468 className="mb-4" label="Sponsored" />
-      <HPFBanner className="mb-6" label="Advertisement" />
 
       {results.length === 0 ? (
         <EmptyState
@@ -491,18 +458,12 @@ function SearchView({ query }: { query: string }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {results.map(({ calculator, category }, i) => (
             <Fragment key={calculator.id}>
-              {i > 0 && i % 8 === 0 && (
-                <HPFBanner className="sm:col-span-2 lg:col-span-3 xl:col-span-4" label="Sponsored" />
-              )}
               <CalculatorCard calculator={calculator} category={category} index={i} />
             </Fragment>
           ))}
         </div>
       )}
 
-      {/* Bottom ad on search page */}
-      <HPFBanner468 className="mt-4" label="Sponsored" />
-      <HPFBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -530,9 +491,6 @@ function Footer() {
   return (
     <footer className="mt-auto border-t bg-card/50 py-6 px-4 sm:px-6 no-print">
       <div className="max-w-7xl mx-auto">
-        {/* Footer ad */}
-        <HPFBanner468 className="mb-3" label="Sponsored" />
-        <HPFBanner className="mb-4" label="Advertisement" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">
