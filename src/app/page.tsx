@@ -275,6 +275,8 @@ function CategoryView({ categoryId }: { categoryId: string }) {
         </div>
       </div>
 
+      {/* Ad in category view */}
+      <HPFBanner468 className="mb-6" label="Advertisement" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {calcs.map((c, i) => {
@@ -289,6 +291,8 @@ function CategoryView({ categoryId }: { categoryId: string }) {
         })}
       </div>
 
+      {/* Bottom ad in category view */}
+      <NativeBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -315,6 +319,8 @@ function FavoritesView() {
         <p className="text-sm text-white/90">{favs.length} {t(lang, "calculators")}</p>
       </div>
 
+      {/* Ad in favorites view */}
+      <NativeBanner className="mb-6" label="Advertisement" />
 
       {favs.length === 0 ? (
         <EmptyState
@@ -330,6 +336,8 @@ function FavoritesView() {
         </div>
       )}
 
+      {/* Bottom ad in favorites */}
+      <HPFBanner468 className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -372,6 +380,8 @@ function HistoryView() {
         </div>
       </div>
 
+      {/* Ad in history view */}
+      <HPFBanner468 className="mb-6" label="Advertisement" />
 
       {history.length === 0 ? (
         <EmptyState
@@ -425,6 +435,8 @@ function HistoryView() {
         </div>
       )}
 
+      {/* Bottom ad in history */}
+      <NativeBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -447,6 +459,8 @@ function SearchView({ query }: { query: string }) {
         </h1>
       </div>
 
+      {/* Ad in search results */}
+      <NativeBanner className="mb-6" label="Advertisement" />
 
       {results.length === 0 ? (
         <EmptyState
@@ -464,6 +478,8 @@ function SearchView({ query }: { query: string }) {
         </div>
       )}
 
+      {/* Bottom ad in search */}
+      <HPFBanner468 className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -491,6 +507,8 @@ function Footer() {
   return (
     <footer className="mt-auto border-t bg-card/50 py-6 px-4 sm:px-6 no-print">
       <div className="max-w-7xl mx-auto">
+        {/* Footer ad */}
+        <HPFBanner className="mb-4" label="Advertisement" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <div className="rounded-lg bg-gradient-to-br from-violet-500 to-orange-500 p-1">
