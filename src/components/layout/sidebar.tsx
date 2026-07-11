@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Home, Star, History as HistoryIcon, Calculator } from "lucide-react";
+import { X, Sparkles, Home, Star, History as HistoryIcon, Calculator, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUI, usePreferences } from "@/store";
 import { CATEGORIES, REGISTRY } from "@/lib/registry";
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { id: "home", labelKey: "home", icon: Home },
   { id: "favorites", labelKey: "favorites", icon: Star },
   { id: "history", labelKey: "history", icon: HistoryIcon },
+  { id: "about", labelKey: "about", icon: Info },
 ] as const;
 
 export function Sidebar() {
@@ -25,7 +26,7 @@ export function Sidebar() {
   const setActiveCategory = useUI((s) => s.setActiveCategory);
   const setSearchQuery = useUI((s) => s.setSearchQuery);
 
-  const handleNav = (v: "home" | "favorites" | "history") => {
+  const handleNav = (v: "home" | "favorites" | "history" | "about") => {
     setView(v);
     setSearchQuery("");
     setSidebarOpen(false);

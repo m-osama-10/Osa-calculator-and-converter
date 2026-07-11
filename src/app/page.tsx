@@ -97,6 +97,17 @@ export default function Home() {
                 <SearchView query={searchQuery} />
               </motion.div>
             )}
+            {view === "about" && (
+              <motion.div
+                key="about"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+              >
+                <AboutView />
+              </motion.div>
+            )}
           </AnimatePresence>
         </main>
       </div>
@@ -495,6 +506,99 @@ function EmptyState({ icon, title, action }: { icon: string; title: string; acti
       </div>
       <p className="text-sm text-muted-foreground max-w-md mb-4">{title}</p>
       {action}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// About view
+// ---------------------------------------------------------------------------
+function AboutView() {
+  const lang = usePreferences((s) => s.language);
+  const setView = useUI((s) => s.setView);
+
+  return (
+    <div className="p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto">
+      {/* Promo image */}
+      <div className="rounded-2xl overflow-hidden shadow-xl mb-6 border">
+        <img
+          src="/promo.png"
+          alt={lang === "ar" ? "Zoma Calculator and OSA Converter" : "Zoma Calculator and OSA Converter"}
+          className="w-full h-auto object-cover"
+        />
+      </div>
+
+      {/* About content */}
+      <div className="rounded-2xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-orange-500 p-6 sm:p-8 mb-6 text-white shadow-lg">
+        <div className="flex items-center gap-3 mb-4">
+          <img src="/logo.png" alt="Logo" className="h-12 w-12 rounded-lg bg-white/20 p-1 backdrop-blur-sm" />
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold">{t(lang, "appName")}</h1>
+            <p className="text-sm text-white/90">{t(lang, "tagline")}</p>
+          </div>
+        </div>
+        <p className="text-sm sm:text-base text-white/90 leading-relaxed">
+          {lang === "ar"
+            ? "منصة شاملة تضم أكثر من 120 حاسبة ومحوّل في 14 فئة مختلفة — للرياضيات والكيمياء والفيزياء والمالية والصحة والهندسة والمزيد. تدعم العربية والإنجليزية مع دعم كامل للاتجاه من اليمين لليسار، وتعمل دون اتصال بالإنترنت."
+            : "A comprehensive platform with 120+ calculators and converters across 14 categories — math, chemistry, physics, finance, health, engineering and more. Bilingual (Arabic/English) with full RTL support and offline capability."}
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+        {[
+          { value: `${REGISTRY.length}+`, label: lang === "ar" ? "حاسبة" : "Calculators" },
+          { value: `${CATEGORIES.length}`, label: lang === "ar" ? "فئة" : "Categories" },
+          { value: "200+", label: lang === "ar" ? "تحويل" : "Conversions" },
+          { value: "2", label: lang === "ar" ? "لغة" : "Languages" },
+        ].map((s, i) => (
+          <div key={i} className="bg-card border rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-primary">{s.value}</div>
+            <div className="text-xs text-muted-foreground">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Features */}
+      <div className="grid sm:grid-cols-2 gap-4 mb-6">
+        <div className="bg-card border rounded-xl p-5">
+          <h3 className="font-semibold mb-2 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-violet-500" />
+            {lang === "ar" ? "مميزات المنصة" : "Platform Features"}
+          </h3>
+          <ul className="text-sm text-muted-foreground space-y-1.5">
+            <li>✓ {lang === "ar" ? "حاسبة قياسية وعلمية بأزرار" : "Standard & Scientific button calculators"}</li>
+            <li>✓ {lang === "ar" ? "بحث فوري وذكي" : "Instant smart search"}</li>
+            <li>✓ {lang === "ar" ? "مفضلة وسجل العمليات" : "Favorites & calculation history"}</li>
+            <li>✓ {lang === "ar" ? "تصدير PDF و Excel" : "Export to PDF & Excel"}</li>
+            <li>✓ {lang === "ar" ? "وضع فاتح وداكن" : "Light & Dark mode"}</li>
+            <li>✓ {lang === "ar" ? "اختصارات لوحة المفاتيح" : "Keyboard shortcuts"}</li>
+            <li>✓ {lang === "ar" ? "يعمل دون اتصال (PWA)" : "Offline support (PWA)"}</li>
+          </ul>
+        </div>
+        <div className="bg-card border rounded-xl p-5">
+          <h3 className="font-semibold mb-2 flex items-center gap-2">
+            <Calculator className="h-4 w-4 text-fuchsia-500" />
+            {lang === "ar" ? "الفئات المتاحة" : "Available Categories"}
+          </h3>
+          <ul className="text-sm text-muted-foreground space-y-1.5">
+            {CATEGORIES.map((cat) => (
+              <li key={cat.id}>• {cat.names[lang]}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Ad */}
+      <HPFBanner468 className="mb-6" label="Advertisement" />
+
+      {/* CTA */}
+      <div className="text-center">
+        <Button onClick={() => setView("home")} size="lg" className="gap-2">
+          <Sparkles className="h-4 w-4" />
+          {lang === "ar" ? "ابدأ الاستخدام" : "Get Started"}
+        </Button>
+      </div>
     </div>
   );
 }

@@ -104,7 +104,7 @@ export const useHistory = create<HistoryState>()(
 // ============================================================================
 // UI Store — current view, active category, search query, active calculator
 // ============================================================================
-export type View = "home" | "category" | "favorites" | "history" | "search";
+export type View = "home" | "category" | "favorites" | "history" | "search" | "about";
 
 interface UIState {
   view: View;
