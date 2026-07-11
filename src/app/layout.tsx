@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { AppProviders } from "@/components/providers/app-providers";
+import { PopunderLoader } from "@/components/ads/popunder-loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,17 +81,14 @@ export default function RootLayout({
           async
           src="https://pl30318261.effectivecpmnetwork.com/09/06/bd/0906bd7626f8048137180fb19d3d9ffa.js"
         />
-        {/* Popunder ad script (EffectiveCPMNetwork) */}
-        <script
-          async
-          src="https://pl30318260.effectivecpmnetwork.com/2b/9a/6b/2b9a6b655fa25e8a7985dc74f25da262.js"
-        />
+        {/* Popunder ad — loaded with delay & cooldown via PopunderLoader component */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
       >
         <AppProviders>
           {children}
+          <PopunderLoader />
         </AppProviders>
         <Toaster />
         <SonnerToaster position="top-center" />
