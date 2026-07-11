@@ -13,7 +13,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { toast } from "sonner";
 import { useUI, usePreferences, useFavorites, useHistory } from "@/store";
@@ -22,6 +21,7 @@ import { Icon } from "@/lib/icons";
 import { t } from "@/lib/i18n";
 import type { Calculator, Field, ComputeResult } from "@/lib/types";
 import { StandardCalculator, ScientificCalculator } from "@/components/calculators/button-calculators";
+import { HPFBanner468 } from "@/components/ads/hpf-banner-468";
 import { cn } from "@/lib/utils";
 
 /** Wrapper that mounts a fresh inner component when the calculator changes. */
@@ -233,7 +233,7 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
         </div>
 
         {/* Body — full-width button calculator */}
-        <ScrollArea className="flex-1">
+        <div className="flex-1 min-h-0 overflow-y-auto">
           <div className="p-4 sm:p-6 max-w-2xl mx-auto">
             {calc.id === "standard" ? (
               <StandardCalculator calcId={calc.id} />
@@ -241,7 +241,11 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
               <ScientificCalculator calcId={calc.id} />
             )}
           </div>
-        </ScrollArea>
+          {/* Small ad inside calculator modal */}
+          <div className="px-4 sm:px-6 pb-4 no-print">
+            <HPFBanner468 className="my-0" label="Advertisement" />
+          </div>
+        </div>
       </>
     );
   }
@@ -274,7 +278,7 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
       </div>
 
       {/* Body */}
-      <ScrollArea className="flex-1">
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="grid lg:grid-cols-2 gap-0 lg:gap-6 p-4 sm:p-6">
           {/* Inputs */}
           <div className="print-area space-y-4">
@@ -348,7 +352,11 @@ function ModalInner({ calcId, onClose }: { calcId: string; onClose: () => void }
           </div>
         </div>
 
-      </ScrollArea>
+        {/* Small ad inside calculator modal */}
+        <div className="px-4 sm:px-6 pb-4 no-print">
+          <HPFBanner468 className="my-0" label="Advertisement" />
+        </div>
+      </div>
     </>
   );
 }
