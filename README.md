@@ -1,164 +1,553 @@
-# 🧮 Zoma Calculator and OSA Converter
+# 🧮 Zoma Calculator and OSA Converter | حاسبة ومحوّل Zoma و OSA
 
 > **منصة شاملة لحاسبات ومحولات متعددة الأغراض — 150+ حاسبة في 19 فئة**
-
-A comprehensive, bilingual (Arabic/English) all-in-one calculator and conversion platform built as a modern PWA. Features 150+ calculators across 19 categories including math, chemistry, physics, biology, finance, health, agriculture, engineering, and more — with full RTL support and offline capability.
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Categories](#categories)
-- [Technology Stack](#technology-stack)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Adding New Calculators](#adding-new-calculators)
-- [Deployment](#deployment)
-- [License](#license)
+>
+> **A comprehensive, bilingual (Arabic/English) all-in-one calculator and conversion platform with 150+ calculators across 19 categories**
 
 ---
 
-## 🌟 Overview
+## 📋 المحتويات | Table of Contents
 
-**Zoma Calculator and OSA Converter** is a production-ready Next.js 16 web application that provides hundreds of calculators and unit converters in a single, beautiful, responsive interface. It's designed to be the only calculator tool you'll ever need — whether you're a student, engineer, scientist, farmer, or just someone who needs to do quick calculations.
-
-The app is fully bilingual (Arabic/English) with automatic RTL/LTR direction switching, works offline as a PWA, and includes a modular architecture where adding a new calculator requires zero UI code — just register a new entry in the registry.
-
----
-
-## ✨ Features
-
-### Core Features
-- 🌐 **Bilingual** — Full Arabic & English support with automatic RTL/LTR switching
-- 🌓 **Dark/Light Mode** — System-aware theme with manual toggle
-- 🔍 **Instant Search** — Smart fuzzy search across all 150+ calculators with keyboard shortcut (`/` or `Ctrl+K`)
-- ⭐ **Favorites** — Star any calculator for quick access
-- 📜 **History** — Last 50 calculations saved locally
-- 📤 **Export** — Copy, Share, Print, Export PDF, Export Excel (CSV)
-- 💾 **Save Results** — Save any calculation to history
-- 📱 **PWA** — Installable, works offline with service worker
-- ⌨️ **Keyboard Shortcuts** — Full keyboard support (`?` for help)
-- ♿ **Accessible** — ARIA labels, semantic HTML, focus management
-- 🔒 **Local Storage** — All data stays on your device
-
-### Calculator Features
-- ✅ Input validation with error handling
-- ✅ Formula display for every calculation
-- ✅ Step-by-step calculation breakdown
-- ✅ Explanation of the method
-- ✅ Live calculation (auto-update as you type)
-- ✅ Responsive charts (pie, donut, bar) — pure SVG, no dependencies
-- ✅ Status indicators (good/warning/bad) for health/finance results
-- ✅ Copyable formulas and results
-
-### Button-Based Calculators
-- 🖩 **Standard Calculator** — Full numeric keypad with +, −, ×, ÷, %, parentheses, live preview, history, keyboard support
-- 🔬 **Scientific Calculator** — sin/cos/tan, log/ln, √, x², xʸ, π, e, n!, DEG/RAD, memory (MC/MR/M+/M−/MS), calculation history
+- [نظرة عامة | Overview](#نظرة-عامة--overview)
+- [المميزات | Features](#المميزات--features)
+- [الفئات | Categories](#الفئات--categories)
+- [شرح تفصيلي للمحولات المهمة | Detailed Calculator Guide](#شرح-تفصيلي-للمحولات-المهمة--detailed-calculator-guide)
+- [التقنيات المستخدمة | Technology Stack](#التقنيات-المستخدمة--technology-stack)
+- [التثبيت والتشغيل | Getting Started](#التثبيت-والتشغيل--getting-started)
+- [هيكل المشروع | Project Structure](#هيكل-المشروع--project-structure)
+- [إضافة حاسبة جديدة | Adding New Calculators](#إضافة-حاسبة-جديدة--adding-new-calculators)
+- [النشر | Deployment](#النشر--deployment)
+- [الترخيص | License](#الترخيص--license)
 
 ---
 
-## 📂 Categories (19 categories, 150+ calculators)
+## نظرة عامة | Overview
 
-| # | Category | Count | Description |
-|---|----------|-------|-------------|
-| 1 | **Basic Calculators** | 6 | Standard, Scientific (button-based), Programmer, Percentage, Fraction, Equation Solver |
-| 2 | **Unit Converters** | 30 | Length, Weight, Area, Volume, Temperature, Time, Speed, Data Storage, Pressure, Energy, Power, Angle, Frequency, Force, Torque, Acceleration, Density, Fuel, Flow Rate, Internet Speed, Concentration, Light, Sound, Radiation, Viscosity, Magnetic, Electric Charge, Currency (50+ currencies) |
-| 3 | **Chemistry** | 16 | Molar Mass (with compound info card), Molarity, Molality, Moles, pH, Dilution, Ideal Gas, Buffer (Henderson-Hasselbalch), Normality, Boyle's Law, Combined Gas Law, Osmolarity, Percent Yield, Atomic Mass Lookup, Stoichiometry, Periodic Table (all 118 elements) |
-| 4 | **Physics** | 13 | Velocity, Acceleration, Force, Kinetic/Potential Energy, Momentum, Projectile Motion, Gravitation, Ohm's Law, Electrical Power, Work, Density, Wave Speed |
-| 5 | **Mathematics** | 10 | Triangle (Heron), Circle, Rectangle, Trigonometry, Statistics (mean/median/mode/std dev), Matrix Determinant, Complex Numbers, Logarithm, GCD/LCM, Combinations/Permutations |
-| 6 | **Health & Fitness** | 9 | BMI, BMR, Body Fat (Navy), Water Intake, Ideal Weight, Calories Burned, Macro, Heart Rate Zones, Pregnancy Due Date |
-| 7 | **Nutrition** | 3 | Glycemic Load, Daily Calories (TDEE), Protein Intake |
-| 8 | **Finance** | 10 | Loan/EMI, Compound Interest, Simple Interest, ROI, VAT, Discount, Profit Margin, Savings Goal, Tip, Mortgage |
-| 9 | **Engineering** | 4 | Electrical Power, Pipe Flow, Stress/Strain, Reynolds Number |
-| 10 | **Laboratory Tools** | 4 | Serial Dilution, Solution Preparation, Reagent Volume, Glucose Unit Converter |
-| 11 | **Computer** | 5 | IP Subnet, Number Base, Download Time, Color (RGB↔HEX), Password Generator |
-| 12 | **Date & Time** | 4 | Age, Date Difference, Business Days, Countdown |
-| 13 | **Construction** | 4 | Concrete Volume, Bricks, Paint, Tiles |
-| 14 | **Everyday** | 4 | Fuel Cost, Electricity Bill, Split Bill, Travel Cost |
-| 15 | **Safe Home Experiments** | 5 | Salt Solution Maker, Volcano (Vinegar+Baking Soda), Crystal Growing, Density Column, pH of Household Items |
-| 16 | **Molecular Biology** | 7 | DNA Concentration (OD260), DNA Copy Number, Melting Temperature (Tm), PCR Amplification, Protein Concentration (OD280), Cell Seeding Density, Molarity↔Mass |
-| 17 | **Molecular Genetics** | 4 | Hardy-Weinberg Equilibrium, Punnett Square, Allele Frequency (with Chi-square), Mutation Rate |
-| 18 | **DNA & RNA Tools** | 6 | DNA/RNA Molecular Weight, DNA Dilution for PCR, Ligation Insert:Vector Ratio, OD600→Cell Density, GC Content Analyzer, Protein MW from Amino Acids |
-| 19 | **Agriculture & Farming** | 8 | Land Area Converter, Seeds per Area, Seedlings per Area, Fertilizer per Area, Pesticide Spray Calculator, Irrigation Water Calculator, Crop Yield Calculator, Plant Population Density |
+**العربية:** منصة إلكترونية شاملة (PWA) تضم أكثر من 150 حاسبة ومحوّل في 19 فئة مختلفة. مصممة للطلاب والمهندسين والعلماء والمزارعين وكل من يحتاج لحسابات سريعة ودقيقة. تدعم العربية والإنجليزية بالكامل مع تبديل تلقائي للاتجاه (RTL/LTR)، وتعمل بدون إنترنت.
 
-### Compound Database
-The Molar Mass calculator includes a **compound info card** that shows physical properties when you enter a known formula (e.g., H2O, NaCl, NaHCO3, C6H12O6):
-- Common name (Arabic & English)
-- Density
-- Melting & boiling points
-- Physical state at room temperature
-- Household uses
-- Hazard level with safety warnings
-
-### Periodic Table
-Complete interactive periodic table with all **118 elements**:
-- Atomic number, symbol, name (Arabic & English)
-- Atomic mass
-- Electron configuration
-- Category (alkali metal, halogen, noble gas, etc.)
-- Group & period
-- Color-coded by element category
+**English:** A production-ready Next.js 16 PWA providing hundreds of calculators and unit converters in a single, beautiful, responsive interface. Fully bilingual (Arabic/English) with automatic RTL/LTR switching, offline capability, and a modular architecture where adding a new calculator requires zero UI code.
 
 ---
 
-## 🛠 Technology Stack
+## المميزات | Features
 
-| Layer | Technology |
-|-------|-----------|
-| **Framework** | Next.js 16 (App Router, Turbopack) |
-| **Language** | TypeScript 5 |
-| **Styling** | Tailwind CSS 4 + shadcn/ui (New York) |
-| **Icons** | Lucide React |
-| **Animations** | Framer Motion |
-| **State Management** | Zustand (client) |
-| **Theme** | next-themes (dark/light) |
-| **PWA** | manifest.webmanifest + Service Worker |
-| **Fonts** | Geist Sans & Geist Mono |
-| **Package Manager** | Bun |
+### المميزات الأساسية | Core Features
+
+| الميزة | الوصف | Description |
+|--------|-------|-------------|
+| 🌐 ثنائي اللغة | عربي وإنجليزي مع تبديل تلقائي RTL/LTR | Arabic & English with auto RTL/LTR |
+| 🌓 الوضع الليلي | فاتح/داكن مع كشف تلقائي لإعدادات النظام | Light/Dark mode with system detection |
+| 🔍 بحث فوري | بحث ذكي في كل الحاسبات باختصار لوحة المفاتيح `/` | Smart fuzzy search with `/` shortcut |
+| ⭐ المفضلة | احفظ أي حاسبة للوصول السريع | Star any calculator for quick access |
+| 📜 السجل | آخر 50 عملية حسابية محفوظة محليًا | Last 50 calculations saved locally |
+| 📤 تصدير | نسخ، مشاركة، طباعة، PDF، Excel (CSV) | Copy, Share, Print, PDF, Excel |
+| 📱 PWA | قابل للتثبيت ويعمل بدون إنترنت | Installable, works offline |
+| ⌨️ اختصارات لوحة المفاتيح | اضغط `?` لعرض كل الاختصارات | Press `?` for shortcuts help |
+| ♿ إمكانية الوصول | ARIA labels, HTML دلالي, إدارة التركيز | ARIA labels, semantic HTML, focus management |
+
+### مميزات الحاسبات | Calculator Features
+- ✅ التحقق من المدخلات مع معالجة الأخطاء | Input validation with error handling
+- ✅ عرض الصيغة المستخدمة | Formula display
+- ✅ خطوات الحل خطوة بخطوة | Step-by-step breakdown
+- ✅ شرح طريقة الحساب | Explanation of method
+- ✅ حساب مباشر (يتحدث فور الكتابة) | Live calculation
+- ✅ رسوم بيانية تفاعلية (دائرية، أعمدة) | Interactive charts (pie, bar)
+- ✅ مؤشرات الحالة (جيد/تحذير/سيء) | Status indicators (good/warning/bad)
 
 ---
 
-## 🚀 Getting Started
+## الفئات | Categories
 
-### Prerequisites
-- Node.js 18+ or Bun
+**19 فئة تحتوي على 150+ حاسبة ومحوّل:**
+
+| # | الفئة | العدد | الوصف |
+|---|------|------|-------|
+| 1 | الحاسبات الأساسية | 6 | قياسية، علمية (بأزرار)، برمجية، نسبة مئوية، كسور، حل معادلات |
+| 2 | محوّلات الوحدات | 30 | الطول، الوزن، المساحة، الحجم، الحرارة، الوقت، السرعة، البيانات، الضغط، الطاقة، العملات (50+ عملة) |
+| 3 | الكيمياء | 16 | الكتلة المولية، المولارية، pH، التخفيف، الغازات، الجدول الدوري الكامل (118 عنصر) |
+| 4 | الفيزياء | 13 | السرعة، القوة، الطاقة، الزخم، حركة المقذوفات، قانون أوم |
+| 5 | الرياضيات | 10 | المثلثات، الإحصاء، المصفوفات، الأعداد المركبة، اللوغاريتمات |
+| 6 | الصحة واللياقة | 9 | BMI، BMR، نسبة الدهون، الماء، السعرات، مناطق ضربات القلب |
+| 7 | التغذية | 3 | الحمل السكري، السعرات اليومية، البروتين |
+| 8 | المالية | 10 | القرض/القسط، الفائدة المركبة، ROI، الضريبة، الخصم، الرهن |
+| 9 | الهندسة | 4 | القدرة الكهربائية، تدفق الأنابيب، الإجهاد، رقم رينولدز |
+| 10 | أدوات المختبر | 4 | التخفيف المتسلسل، تحضير المحاليل، الكواشف |
+| 11 | الحاسوب | 5 | الشبكات الفرعية IP، قواعد الأرقام، الألوان، كلمات المرور |
+| 12 | التاريخ والوقت | 4 | العمر، فرق التاريخ، أيام العمل، العد التنازلي |
+| 13 | البناء | 4 | الخرسانة، الطوب، الطلاء، البلاط |
+| 14 | يوميات | 4 | الوقود، الكهرباء، البقشيش، السفر |
+| 15 | تجارب منزلية آمنة | 5 | محلول ملحي، بركان، بلورات، عمود كثافة، pH منزلي |
+| 16 | البيولوجيا الجزيئية | 7 | تركيز DNA، عدد النسخ، Tm، PCR، البروتين، زراعة الخلايا |
+| 17 | الوراثة الجزيئية | 4 | هاردي-واينبرغ، مربع بنيت، تردد الأليل، الطفرات |
+| 18 | أدوات DNA و RNA | 6 | الوزن الجزيئي، تخفيف PCR، الربط، OD600، محتوى GC |
+| 19 | الزراعة والمحاصيل | 8 | مساحات الأراضي، البذور، الشتلات، الأسمدة، المبيدات، الري، الإنتاجية |
+
+---
+
+## شرح تفصيلي للمحولات المهمة | Detailed Calculator Guide
+
+### 🧪 الكيمياء | Chemistry (16 حاسبة)
+
+#### 1. الكتلة المولية وتعريف المركب | Molar Mass & Compound Info
+
+**الوصف:** اكتب الصيغة الكيميائية (مثل H2O، NaCl، C6H12O6) لتحسب الكتلة المولية. إذا كان المركب معروفًا، تظهر بطاقة تعريفية كاملة.
+
+**مثال عملي:** اكتب `NaCl` ← النتيجة:
+- الكتلة المولية: 58.44 g/mol
+- الاسم الشائع: ملح الطعام / Table Salt
+- الكثافة: 2.16 g/cm³
+- درجة الانصهار: 801°م
+- درجة الغليان: 1413°م
+- الحالة: صلب / Solid
+- الاستخدامات المنزلية: طبخ، حفظ الطعام، إذابة الجليد، محلول ملحي
+
+**مثال آخر:** `NaHCO3` ← بيكربونات الصوديوم (بيكنج صودا):
+- الكتلة المولية: 84.01 g/mol
+- درجة الانصهار: 50°م
+- الاستخدامات: خبز، تنظيف، مضاد حموضة، إزالة الروائح، طفاية حريق
+
+**الصيغ المدعومة:**
+- صيغ بسيطة: `H2O`، `NaCl`، `C6H12O6`
+- صيغ معقدة بأقواس: `Ca(NO3)2`، `Fe2(SO4)3`
+- صيغ هيدرات: `CuSO4·5H2O` (كبريتات النحاس المائية = 249.677 g/mol)
+- كل العناصر الـ 118 في قاعدة البيانات
+
+#### 2. حاسبة pH | pH Calculator
+
+**الوصف:** احسب pH من تركيز أيونات الهيدروجين [H⁺] أو العكس.
+
+**مثال عملي:** تركيز [H⁺] = 0.001 mol/L
+- pH = -log₁₀(0.001) = 3.0
+- pOH = 14 - 3 = 11
+- [OH⁻] = 10⁻¹¹ mol/L
+- التصنيف: حمضي / Acidic
+
+#### 3. تخفيف المحاليل | Dilution Calculator (C₁V₁ = C₂V₂)
+
+**الوصف:** حل معادلة التخفيف لأي متغير من الأربعة.
+
+**مثال عملي:** عندك محلول مخزون 10 mol/L، عايز تحضّر 500 mL بتركيز 2 mol/L:
+- C₁ = 10، V₂ = 500، C₂ = 2
+- V₁ = (C₂ × V₂) / C₁ = (2 × 500) / 10 = 100 mL
+- يعني خُذ 100 mL من المخزون وأكمل بالماء إلى 500 mL
+
+#### 4. الجدول الدوري التفاعلي | Interactive Periodic Table
+
+**الوصف:** كل العناصر الـ 118 بياناتها الكاملة.
+
+**لكل عنصر:**
+- العدد الذري، الرمز، الاسم (عربي وإنجليزي)
+- الكتلة الذرية
+- توزيع الإلكترونات (مثل `[He] 2s² 2p²` للكربون)
+- التصنيف (فلز قلوي، هالوجين، غاز نبيل، إلخ)
+- المجموعة والدورة
+- ألوان مميزة لكل فئة
+
+#### 5. قانون الغاز المثالي | Ideal Gas Law (PV = nRT)
+
+**مثال عملي:** احسب عدد مولات غاز عند ضغط 1 atm، حجم 22.4 L، حرارة 273 K:
+- n = PV / RT = (1 × 22.4) / (0.08206 × 273) = 1.0 mol
+
+#### 6. الكيمياء النسبية | Stoichiometry
+
+**الوصف:** من كتلة وصيغة كيميائية، احسب المولات، عدد الجزيئات، وإجمالي الذرات.
+
+**مثال عملي:** 58.44 جم من NaCl:
+- المولات = 58.44 / 58.44 = 1.0 mol
+- الجزيئات = 1.0 × 6.022×10²³ = 6.022×10²³ جزيء
+- إجمالي الذرات = 2 × 6.022×10²³ = 1.204×10²⁴ ذرة
+
+#### حاسبات كيميائية أخرى:
+| الحاسبة | الصيغة | مثال |
+|---------|--------|------|
+| المولارية | M = n/V | 0.5 mol في 1 L = 0.5 M |
+| المولالية | m = n/kg | 0.5 mol في 1 kg مذيب = 0.5 m |
+| المخزن (هندرسون) | pH = pKa + log([A⁻]/[HA]) | pKa=4.76، نسبة 1:1 ← pH=4.76 |
+| التعادلية | N = eq/V | 0.5 مكافئ في 1 L = 0.5 N |
+| الأسمولية | Osm = M × n | 0.9 mol/L NaCl (n=2) = 1.8 Osm/L |
+| نسبة الإنتاج | % = (فعلي/نظري)×100 | 8.5g فعلي / 10g نظري = 85% |
+
+---
+
+### 🧬 البيولوجيا الجزيئية و DNA | Molecular Biology & DNA (17 حاسبة)
+
+#### 1. تركيز DNA من OD260
+
+**الوصف:** حوّل قراءة الامتصاص عند 260 nm إلى تركيز DNA.
+
+**العوامل التحويلية:**
+| النوع | العامل (μg/mL لكل OD) |
+|------|----------------------|
+| DNA ثنائي الشريطة (dsDNA) | 50 |
+| DNA أحادي الشريطة (ssDNA) | 33 |
+| RNA أحادي الشريطة (ssRNA) | 40 |
+| أوليجونوكليوتيد | 20 |
+
+**مثال عملي:** قراءة OD260 = 0.5، تخفيف 1:10، dsDNA:
+- التركيز = 0.5 × 50 × 10 = 250 μg/mL = 250 ng/μL
+- تحقق من النقاوة: نسبة A260/A280 ≈ 1.8 للـ DNA النقي
+- إذا كانت أقل من 1.8 ← تلوث بروتيني
+
+#### 2. عدد نسخ DNA | DNA Copy Number
+
+**الوصف:** حوّل كتلة DNA (ng) إلى عدد جزيئات.
+
+**مثال عملي:** 100 ng من DNA بطول 3000 bp:
+- الوزن الجزيئي = 3000 × 607.4 + 157.9 = 1,822,358 g/mol
+- المولات = 100×10⁻⁹ / 1,822,358 = 5.49×10⁻¹⁴ mol
+- النسخ = 5.49×10⁻¹⁴ × 6.022×10²³ = 3.3×10¹⁰ نسخة
+
+**الاستخدام:** معايير qPCR، حساب عيار الفيروسات، الاستنساخ الجزيئي
+
+#### 3. حرارة الانصهار (Tm) للبرايمر
+
+**الوصف:** احسب درجة حرارة الانصهار لتسلسل DNA (مهم لتصميم بروايمر PCR).
+
+**مثال عملي:** تسلسل `ATGCATGCATGC` (12 قاعدة):
+- عدد G+C = 6، A+T = 6
+- Tm (والاس) = 2×6 + 4×6 = 36°م
+- محتوى GC = 50%
+- توصية: اضبط حرارة التلدين في PCR ~3-5°م أقل من Tm
+
+**معايير البرايمر المثالي:**
+- الطول: 18-25 نيوكليوتيد
+- محتوى GC: 40-60%
+- Tm: 55-65°م
+- تجنب 3+ قواعد G/C متتالية عند النهاية 3'
+
+#### 4. حاسبة تضخيم PCR
+
+**مثال عملي:** 1000 نسخة ابتدائية، 30 دورة، كفاءة 100%:
+- النسخ النهائية = 1000 × 2³⁰ = 1.07×10¹² نسخة
+- مضاعفة التضخيم = 10⁹× (مليار مرة)
+- عند كفاءة 90%: 1000 × 1.9³⁰ = 3.4×10¹¹
+
+**ملاحظة:** بعد ~35 دورة، يصل التفاعل للذروة بسبب استنزاف الكواشف
+
+#### 5. تركيز البروتين من OD280
+
+**مثال عملي:** OD280 = 0.8، معامل الانطفاء ε = 1.0، طول المسار = 1 cm:
+- التركيز = 0.8 / (1.0 × 1) = 0.8 mg/mL
+- للـ BSA: ε = 0.66 ← التركيز = 1.21 mg/mL
+- للـ IgG: ε = 1.38 ← التركيز = 0.58 mg/mL
+
+#### 6. كثافة زراعة الخلايا | Cell Seeding Density
+
+**مثال عملي:** كثافة مستهدفة 5000 خلية/cm² في وعاء T25 (25 cm²):
+- إجمالي الخلايا = 5000 × 25 = 125,000 خلية
+- إذا كان المخزون 500,000 خلية/mL: الحجم = 125,000 / 500,000 = 0.25 mL = 250 μL
+
+**مرجع مساحة الأوعية:**
+| الوعاء | المساحة (cm²) | حجم الوسط |
+|--------|-------------|-----------|
+| بئر 96 | 0.32 | 100 μL |
+| بئر 24 | 1.9 | 0.5 mL |
+| بئر 6 | 9.6 | 2 mL |
+| T25 | 25 | 5 mL |
+| T75 | 75 | 10 mL |
+| T175 | 175 | 20 mL |
+
+#### 7. حاسبات DNA و RNA إضافية:
+
+| الحاسبة | الوصف | مثال |
+|---------|-------|------|
+| الوزن الجزيئي DNA/RNA | من طول التسلسل | 1000 bp dsDNA = 660,000 Da |
+| تخفيف DNA لـ PCR | C₁V₁ = C₂V₂ | مخزون 200→ هدف 20 ng/μL في 50 μL: خُذ 5 μL |
+| نسبة الإدخال:الناقل | للاستنساخ | ناقل 50ng/3kb، إدخال 1kb، نسبة 3:1 ← 50ng إدخال |
+| OD600 → كثافة | لبكتيريا E. coli | OD=0.5 ← 4×10⁸ خلية/mL |
+| محتوى GC | تحليل تسلسل | ATGCGATCG ← GC = 55%، Tm = 36°م |
+
+---
+
+### 🧬 الوراثة الجزيئية | Molecular Genetics (4 حاسبات)
+
+#### 1. توازن هاردي-واينبرغ | Hardy-Weinberg Equilibrium
+
+**الصيغة:** p² + 2pq + q² = 1 ، p + q = 1
+
+**مثال عملي:** إذا كان 4% من السكان يعانون من مرض متنحٍ (aa):
+- q² = 0.04 ← q = 0.20 (تردد أليل المرض)
+- p = 1 - 0.20 = 0.80 (تردد الأليل الطبيعي)
+- p² = 0.64 (64% سائد متماثل AA)
+- 2pq = 0.32 (32% متغاير Aa — حاملون للمرض)
+- q² = 0.04 (4% متنحي متماثل aa — مصابون)
+
+**الاستخدام:** دراسة التطور، حساب ترددات الأليل، طب الوراثة
+
+#### 2. مربع بنيت | Punnett Square
+
+**مثال عملي:** تزاوج Aa × Aa:
+```
+      A     a
+  A  AA    Aa
+  a  Aa    aa
+```
+- التركيب الوراثي: 1 AA : 2 Aa : 1 aa
+- الصفات: 3 سائد : 1 متنحي (75% : 25%)
+
+#### 3. تردد الأليل مع اختبار كاي²
+
+**مثال عملي:** عدّ 36 AA، 48 Aa، 16 aa (إجمالي 100):
+- p = (2×36 + 48) / 200 = 0.60
+- q = (2×16 + 48) / 200 = 0.40
+- المتوقع: AA=36، Aa=48، aa=16
+- χ² = 0 ← المجتمع في توازن هاردي-واينبرغ
+
+#### 4. معدل الطفرات
+
+**مثال عملي:** 5 طفرات في 100,000 فرد خلال جيل واحد:
+- معدل الطفرات = 5 / (100,000 × 1) = 5×10⁻⁵ لكل جيل
+
+**معدلات مرجعية:**
+| الكائن | المعدل (لكل جيل/زوج قاعدي) |
+|--------|--------------------------|
+| E. coli | 2×10⁻¹⁰ |
+| الإنسان | 1.3×10⁻⁸ |
+| HIV | 3×10⁻⁵ |
+
+---
+
+### 🌾 الزراعة والمحاصيل | Agriculture & Farming (8 حاسبات)
+
+#### 1. محوّل مساحة الأراضي | Land Area Converter
+
+**الوحدات المدعومة:**
+| الوحدة | المساحة (م²) | الاستخدام |
+|--------|------------|----------|
+| فدان | 4,200 | مصر، السودان |
+| أكر | 4,047 | أمريكا، بريطانيا |
+| هكتار | 10,000 | دولي |
+| متر مربع | 1 | — |
+| دونم | 1,000 | بلاد الشام، تركيا |
+
+**مثال عملي:** 5 فدان = 21,000 م² = 5.19 أكر = 2.1 هكتار = 21 دونم
+
+#### 2. كمية البذور للمساحة | Seeds per Area
+
+**الوصف:** احسب كمية البذور المطلوبة لأي مساحة بأي وحدة.
+
+**المميزات:**
+- اختار وحدة المساحة (فدان/أكر/هكتار/م²/دونم)
+- اختار المحصول (قمح، ذرة، أرز، قطن، عباد شمس)
+- أدخل المسافات بين النباتات والصفوف
+- يراعي نسبة الإنبات + 15% فاقد ميداني
+
+**مثال عملي — قمح في 3 فدان:**
+- المسافة بين النباتات: 3 سم
+- المسافة بين الصفوف: 15 سم
+- نسبة الإنبات: 90%
+- وزن 1000 بذرة: 40 جم
+
+**النتائج:**
+- عدد النباتات: 2,800,000 نبات/فدان ← 8,400,000 لـ 3 فدان
+- إجمالي البذور: 9,333,333 بذرة
+- وزن البذور: 373.3 كجم
+- الموصى به (+15% فاقد): 429.3 كجم
+
+#### 3. عدد الشتلات للمساحة | Seedlings per Area
+
+**الوصف:** احسب عدد الشتلات المطلوبة لمحاصيل الخضروات والأشجار.
+
+**المحاصيل المدعومة مع المسافات التلقائية:**
+| المحصول | المسافة بين الشتلات (سم) | المسافة بين الصفوف (سم) | شتلات/فدان |
+|---------|------------------------|----------------------|-----------|
+| طماطم | 50 | 100 | ~8,400 |
+| فلفل | 40 | 80 | ~13,125 |
+| خيار | 30 | 100 | ~14,000 |
+| بطيخ | 100 | 200 | ~2,100 |
+| فراولة | 30 | 100 | ~14,000 |
+| برتقال | 500 | 600 | ~14 |
+| مانجو | 700 | 800 | ~7 |
+| نخيل | 800 | 800 | ~6 |
+| زيتون | 600 | 700 | ~10 |
+
+**مثال عملي — طماطم في 2 فدان:**
+- شتلات أساسية: 8,400 × 2 = 16,800 شتلة
+- مع 10% إضافي: 18,480 شتلة
+- صواني المشتل (209 عين): 89 صينية
+
+#### 4. الأسمدة للمساحة | Fertilizer per Area
+
+**الوصف:** احسب كمية السماد من توصية NPK.
+
+**الأسمدة المدعومة:**
+| السماد | محتوى العنصر (%) |
+|--------|----------------|
+| يوريا (Urea) | 46% N |
+| نترات أمونيوم | 33.5% N |
+| سلفات أمونيوم | 20.6% N |
+| سوبر فوسفات أحادي | 15% P₂O₅ |
+| سوبر فوسفات ثلاثي | 46% P₂O₅ |
+| DAP | 18% N، 46% P₂O₅ |
+| كلوريد بوتاسيوم (MOP) | 60% K₂O |
+| سلفات بوتاسيوم (SOP) | 50% K₂O |
+| NPK 19-19-19 | 19% لكل من N، P₂O₅، K₂O |
+
+**مثال عملي — قمح في 5 فدان:**
+- التوصية: 80 كجم N/فدان
+- السماد: يوريا (46% N)
+- السماد للفدان = 80 / 0.46 = 173.9 كجم
+- الإجمالي لـ 5 فدان = 173.9 × 5 = 869.6 كجم
+- بأكياس 50 كجم = 18 كيس
+
+**توصيات N للفدان حسب المحصول:**
+| المحصول | N (كجم/فدان) |
+|---------|-------------|
+| قمح | 60-80 |
+| ذرة | 120-150 |
+| قطن | 80-100 |
+| أرز | 70-90 |
+| بطاطس | 100-120 |
+
+#### 5. حاسبة رش المبيدات | Pesticide Spray Calculator
+
+**مثال عملي — رش 3 فدان:**
+- معدل المبيد: 1 لتر/فدان
+- حجم الماء: 200 لتر/فدان
+- إجمالي المبيد = 1 × 3 = 3 لتر
+- إجمالي الماء = 200 × 3 = 600 لتر
+- التركيز = 1 / 200 × 100 = 0.5 لتر لكل 100 لتر ماء
+- لرشاش ظهري 20 لتر = 0.1 لتر مبيد
+
+**أنواع الرش وحجم الماء:**
+| نوع الرشاش | حجم الماء/فدان |
+|------------|-------------|
+| أرضي | 200 لتر |
+| جوي | 40-60 لتر |
+| ظهري | 100-200 لتر |
+| ضبابي | 10-20 لتر |
+
+#### 6. حاسبة ماء الري | Irrigation Water Calculator
+
+**مثال عملي — طماطم في 2 فدان بالتنقيط:**
+- الاحتياج اليومي (ETc): 6 مم/يوم
+- فترة الري: كل 3 أيام
+- كفاءة التنقيط: 90%
+- الماء كل رية = (6 × 3 × 4.2 × 2) / 0.9 = 168 م³
+- مدة الري = 168 / 50 = 3.36 ساعة
+
+**كفاءة أنظمة الري:**
+| النظام | الكفاءة | توفير الماء |
+|--------|--------|-----------|
+| تنقيط | 90% | يوفر 30-50% |
+| رشاشات | 75% | متوسط |
+| غمر | 60% | أعلى استهلاك |
+
+#### 7. إنتاجية المحصول | Crop Yield Calculator
+
+**متوسط الإنتاج (كجم/فدان):**
+| المحصول | متوسط | ممتاز |
+|---------|-------|------|
+| قمح | 2,400 | 3,500+ |
+| ذرة | 3,000 | 4,500+ |
+| أرز | 3,500 | 5,000+ |
+| طماطم | 30,000 | 40,000+ |
+| بطاطس | 20,000 | 30,000+ |
+
+**مثال عملي:** 10 فدان قمح، إنتاج 2400 كجم/فدان، سعر 12 جنيه/كجم:
+- إجمالي الإنتاج = 24,000 كجم = 24 طن
+- الإيراد = 24,000 × 12 = 288,000 جنيه
+
+#### 8. كثافة النباتات | Plant Population Density
+
+**مثال عملي:** ذرة بمسافة 25 سم × 70 سم:
+- مساحة النبات = 0.25 × 0.70 = 0.175 م²
+- كثافة الفدان = 4200 / 0.175 = 24,000 نبات/فدان
+- كثافة الهكتار = 10000 / 0.175 = 57,143 نبات/هكتار
+
+---
+
+### 🏠 تجارب منزلية آمنة | Safe Home Experiments (5 حاسبات)
+
+#### 1. مُحضّر محلول ملحي | Salt Solution Maker
+
+**مثال عملي:** تحضير 500 mL محلول ملحي 3%:
+- الملح المطلوب = 500 × 3% = 15 جم (≈ 2.5 ملعقة صغيرة)
+- الماء = 500 - 15 = 485 mL
+
+#### 2. بركان (خل + بيكربونات) | Volcano Experiment
+
+**التفاعل:** CH₃COOH + NaHCO₃ → CH₃COONa + H₂O + CO₂↑
+
+**مثال عملي:** 100 mL خل + 10 جم بيكربونات:
+- الخل فيه ~5% حمض الخليك = 5.05 جم = 0.084 mol
+- البيكربونات = 10 / 84.01 = 0.119 mol
+- المتفاعل المحدد = الخل
+- غاز CO₂ الناتج = 0.084 × 44 = 3.7 جم ≈ 1.9 لتر غاز
+
+#### 3. زراعة البلورات | Crystal Growing
+
+**مثال عملي:** 200 mL ماء عند 60°م:
+- ملح الطعام (NaCl): ذوبانية 36.8 جم/100مل ← 73.6 جم
+- السكر (السكروز): ذوبانية 253.9 جم/100مل ← 507.8 جم
+- كبريتات النحاس: ذوبانية 33.3 جم/100مل ← 66.6 جم
+
+#### 4. pH للمواد المنزلية | pH of Household Items
+
+| المادة | pH | التصنيف | لون مؤشر الملفوف |
+|-------|-----|---------|----------------|
+| عصير ليمون | 2.0 | حمضي قوي | أحمر |
+| خل | 2.5 | حمضي | أحمر-وردي |
+| قهوة | 5.0 | حمضي خفيف | بنفسجي-وردي |
+| ماء نقي | 7.0 | متعادل | بنفسجي |
+| بيكربونات | 8.3 | قاعدي خفيف | أزرق-أخضر |
+| صابون | 9.5 | قاعدي | أخضر |
+| مبيض | 12.5 | قاعدي قوي | أصفر |
+
+---
+
+## التقنيات المستخدمة | Technology Stack
+
+| الطبقة | التقنية |
+|--------|--------|
+| **الإطار** | Next.js 16 (App Router, Turbopack) |
+| **اللغة** | TypeScript 5 |
+| **التنسيق** | Tailwind CSS 4 + shadcn/ui |
+| **الأيقونات** | Lucide React |
+| **الحركات** | Framer Motion |
+| **إدارة الحالة** | Zustand |
+| **الثيم** | next-themes |
+| **PWA** | manifest + Service Worker |
+| **مدير الحزم** | Bun |
+
+---
+
+## التثبيت والتشغيل | Getting Started
+
+### المتطلبات | Prerequisites
+- Node.js 18+ أو Bun
 - Git
 
-### Installation
+### التثبيت | Installation
 
 ```bash
-# Clone the repository
+# استنساخ المستودع
 git clone https://github.com/m-osama-10/Osa-calculator-and-converter.git
 
-# Navigate to project directory
+# الدخول للمجلد
 cd Osa-calculator-and-converter
 
-# Install dependencies
+# تثبيت الحزم
 bun install
-# or
+# أو
 npm install
 
-# Start development server
+# تشغيل خادم التطوير
 bun run dev
-# or
+# أو
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`
+التطبيق سيعمل على `http://localhost:3000`
 
-### Build for Production
+### البناء للإنتاج | Build for Production
 
 ```bash
-# Build the project
 bun run build
-
-# Start production server
 bun run start
 ```
 
-### Lint
+### فحص الكود | Lint
 
 ```bash
 bun run lint
@@ -166,73 +555,60 @@ bun run lint
 
 ---
 
-## 📁 Project Structure
+## هيكل المشروع | Project Structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx              # Root layout (theme, i18n, PWA, ads)
-│   ├── page.tsx                # Main page (Home, Category, Favorites, History, Search, About views)
-│   └── globals.css             # Tailwind + custom styles (RTL, print, scrollbars)
+│   ├── layout.tsx              # التخطيط الرئيسي (الثيم، i18n، PWA)
+│   ├── page.tsx                # الصفحة الرئيسية (الرئيسية، الفئات، المفضلة، السجل، البحث، حول)
+│   └── globals.css             # Tailwind + أنماط مخصصة
 │
 ├── lib/
-│   ├── types.ts                # Calculator, Field, ComputeResult types
-│   ├── i18n.ts                 # Arabic/English translations
-│   ├── categories.ts           # 19 category definitions
-│   ├── registry.ts             # Calculator registry + search
-│   ├── compounds.ts            # Compound database (16 compounds with properties)
-│   ├── periodic-table.ts       # All 118 elements with full data
-│   ├── icons.tsx               # Dynamic Lucide icon wrapper
-│   ├── calculator-utils.ts     # num, fmt, safeEval, factorial, etc.
+│   ├── types.ts                # أنواع الحاسبات والحقول والنتائج
+│   ├── i18n.ts                 # ترجمات عربي/إنجليزي
+│   ├── categories.ts           # تعريفات 19 فئة
+│   ├── registry.ts             # سجل الحاسبات + البحث
+│   ├── compounds.ts            # قاعدة بيانات 16 مركب كيميائي
+│   ├── periodic-table.ts       # كل العناصر الـ 118
+│   ├── calculator-utils.ts     # دوال مساعدة (num, fmt, safeEval)
 │   └── calculators/
-│       ├── basic.ts            # 6 basic calculators (Standard, Scientific buttons)
-│       ├── converters.ts       # 30 unit converters + currency
-│       ├── chemistry.ts        # 16 chemistry calculators
-│       ├── physics.ts          # 13 physics calculators
-│       ├── math.ts             # 10 math calculators
-│       ├── health.ts           # 9 health/fitness calculators
-│       ├── finance.ts          # 10 finance calculators
-│       ├── misc.ts             # Computer, Date, Construction, Everyday, Engineering, Lab, Nutrition
-│       ├── home-experiments.ts # 5 safe home experiment calculators
-│       ├── molecular-biology.ts# 7 molecular biology calculators
-│       ├── genetics.ts         # 4 genetics calculators
-│       ├── dna-tools.ts        # 6 DNA/RNA tool calculators
-│       ├── agriculture.ts      # 8 agriculture calculators
+│       ├── basic.ts            # 6 حاسبات أساسية
+│       ├── converters.ts       # 30 محوّل وحدة + عملات
+│       ├── chemistry.ts        # 16 حاسبة كيميائية
+│       ├── physics.ts          # 13 حاسبة فيزيائية
+│       ├── math.ts             # 10 حاسبات رياضية
+│       ├── health.ts           # 9 حاسبات صحية
+│       ├── finance.ts          # 10 حاسبات مالية
+│       ├── misc.ts             # حاسبات متنوعة
+│       ├── home-experiments.ts # 5 تجارب منزلية
+│       ├── molecular-biology.ts# 7 حاسبات بيولوجيا جزيئية
+│       ├── genetics.ts         # 4 حاسبات وراثة
+│       ├── dna-tools.ts        # 6 أدوات DNA/RNA
+│       ├── agriculture.ts      # 8 حاسبات زراعية
 │       └── periodic-table-viewer.ts
 │
 ├── components/
-│   ├── providers/
-│   │   ├── app-providers.tsx           # ThemeProvider + RTL sync
-│   │   └── service-worker-register.tsx # PWA SW registration
-│   ├── layout/
-│   │   ├── header.tsx                  # Sticky header with search, theme/lang toggles
-│   │   ├── sidebar.tsx                 # Category navigation
-│   │   └── keyboard-shortcuts.tsx      # ? key help dialog
-│   ├── calculators/
-│   │   ├── calculator-card.tsx         # Grid card with favorite star
-│   │   ├── calculator-modal.tsx        # Full-screen modal with dynamic form
-│   │   └── button-calculators.tsx      # Standard & Scientific button calculators
-│   └── ads/
-│       ├── hpf-banner.tsx              # HighPerformanceFormat 728×90 banner
-│       ├── hpf-banner-468.tsx          # HighPerformanceFormat 468×60 banner
-│       └── native-banner.tsx           # EffectiveCPMNetwork native banner
+│   ├── providers/              # موفري السياق (الثيم، SW)
+│   ├── layout/                 # الهيدر، السايدبار، اختصارات لوحة المفاتيح
+│   ├── calculators/            # بطاقة الحاسبة، المودال، الحاسبات بالأزرار
+│   └── ads/                    # مكونات الإعلانات
 │
 ├── store/
-│   └── index.ts                        # Zustand stores (prefs, favorites, history, UI)
+│   └── index.ts                # مخازن Zustand
 │
 └── public/
-    ├── manifest.webmanifest            # PWA manifest
-    ├── sw.js                           # Service Worker (offline caching)
-    ├── logo.png                        # App logo
-    ├── promo.png                       # About page promo image
-    └── icon.svg                        # Fallback icon
+    ├── manifest.webmanifest    # بيانات PWA
+    ├── sw.js                   # Service Worker
+    ├── logo.png                # شعار التطبيق
+    └── promo.png               # صورة صفحة حول
 ```
 
 ---
 
-## ➕ Adding New Calculators
+## إضافة حاسبة جديدة | Adding New Calculators
 
-The architecture is modular — adding a new calculator requires **zero UI code**. Just add an entry to the relevant file in `src/lib/calculators/`:
+الإطار معياري — إضافة حاسبة جديدة لا تتطلب أي كود واجهة. فقط أضف مدخلاً في الملف المناسب:
 
 ```typescript
 // src/lib/calculators/your-file.ts
@@ -242,152 +618,86 @@ import { num, fmt } from "../calculator-utils";
 export const yourCalculators: Calculator[] = [
   {
     id: "your-calculator",
-    category: "basic", // must match a CategoryId
+    category: "basic",
     names: { en: "Your Calculator", ar: "حاسبتك" },
-    descriptions: {
-      en: "What it does...",
-      ar: "ماذا تفعل...",
-    },
-    keywords: ["keyword1", "keyword2"],
-    icon: "Calculator", // Lucide icon name
-    live: true, // auto-calculate on input change
+    descriptions: { en: "...", ar: "..." },
+    keywords: ["keyword"],
+    icon: "Calculator",
+    live: true,
     fields: [
       {
         key: "input1",
-        names: { en: "Input 1", ar: "المدخل 1" },
+        names: { en: "Input", ar: "المدخل" },
         type: "number",
         default: 10,
-        unit: { en: "kg", ar: "كجم" },
         help: { en: "Help text", ar: "نص مساعدة" },
       },
     ],
     compute: (v) => {
-      const input = num(v.input1);
-      const result = input * 2;
+      const result = num(v.input1) * 2;
       return {
         results: [
-          { label: { en: "Result", ar: "النتيجة" }, value: fmt(result, 4), primary: true },
+          { label: { en: "Result", ar: "النتيجة" }, value: fmt(result), primary: true },
         ],
-        formula: `Result = ${input} × 2 = ${fmt(result, 4)}`,
-        steps: [
-          { description: { en: `Multiply ${input} by 2`, ar: `اضرب ${input} في 2` } },
-        ],
-        explanation: {
-          en: "Explanation of the method...",
-          ar: "شرح الطريقة...",
-        },
+        formula: `Result = ${result}`,
+        explanation: { en: "...", ar: "..." },
       };
     },
   },
 ];
 ```
 
-Then register it in `src/lib/registry.ts`:
+ثم سجّلها في `src/lib/registry.ts`:
 
 ```typescript
 import { yourCalculators } from "./calculators/your-file";
 
 const allCalcs: Calculator[] = [
-  // ... existing
+  // ... الموجود
   ...yourCalculators,
 ];
 ```
 
-That's it! The calculator will automatically appear in the UI, search, and category views.
+هذا كل شيء! الحاسبة ستظهر تلقائيًا في الواجهة والبحث.
 
 ---
 
-## 🚢 Deployment
+## النشر | Deployment
 
-### Deploy to Vercel
+### النشر على Vercel
 
-1. Push your code to GitHub
-2. Go to [vercel.com](https://vercel.com) and import the repository
-3. Vercel auto-detects Next.js — just click "Deploy"
-4. Your app will be live at `https://your-project.vercel.app`
-
-### Deploy to other platforms
-
-```bash
-# Build
-bun run build
-
-# The standalone output is in .next/standalone/
-# Deploy that directory with the server.js
-NODE_ENV=production node .next/standalone/server.js
-```
+1. ارفع الكود على GitHub
+2. اذهب إلى [vercel.com](https://vercel.com) واستورد المستودع
+3. Vercel سيكتشف Next.js تلقائيًا — اضغط "Deploy"
+4. تطبيقك سيعمل على `https://your-project.vercel.app`
 
 ---
 
-## 🌐 Internationalization
+## إحصائيات | Statistics
 
-The app supports **Arabic (ar)** and **English (en)** with automatic RTL/LTR direction switching:
-
-- Language toggle in the header (ع / EN button)
-- `<html dir="rtl" lang="ar">` updates dynamically
-- All UI text, calculator names, descriptions, labels, help text, steps, and explanations are bilingual
-- Layout mirrors correctly in RTL mode
-
-To add a new language:
-1. Add the language to `Language` type in `src/lib/i18n.ts`
-2. Add translations for all keys
-3. Add to `LANGUAGE_DIRECTION` map
+| البيان | العدد |
+|--------|------|
+| حاسبة ومحوّل | 150+ |
+| فئة | 19 |
+| عنصر في الجدول الدوري | 118 |
+| مركب كيميائي بخصائص | 16 |
+| عملة في محوّل العملات | 50+ |
+| لغة | 2 (عربي، إنجليزي) |
+| اعتماد على APIs خارجية | 0 (يعمل بالكامل على العميل) |
 
 ---
 
-## 📱 PWA Features
+## الترخيص | License
 
-- **Installable** — Add to home screen on mobile/desktop
-- **Offline** — Service Worker caches navigation and static assets
-- **Standalone** — Runs without browser chrome when installed
-- **App shortcuts** — Quick links to BMI, EMI, Compound Interest
-- **Theme color** — Matches the app's design
-
----
-
-## 📊 Statistics
-
-- **150+** calculators and converters
-- **19** categories
-- **118** elements in the periodic table
-- **16** compounds with full physical properties
-- **50+** currencies in the currency converter
-- **2** languages (Arabic, English)
-- **0** external API dependencies (fully client-side)
-
----
-
-## 📝 License
+هذا المشروع مفتوح المصدر ومتاح تحت رخصة MIT.
 
 This project is open source and available under the MIT License.
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-- Add new calculators
-- Improve translations
-- Fix bugs
-- Enhance the UI/UX
-- Add new categories
-
----
-
-## 💡 Acknowledgments
-
-Built with:
-- [Next.js](https://nextjs.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [shadcn/ui](https://ui.shadcn.com)
-- [Framer Motion](https://www.framer.com/motion)
-- [Lucide Icons](https://lucide.dev)
-- [Zustand](https://zustand-demo.pmnd.rs)
-
----
-
 <p align="center">
-  <strong>Zoma Calculator and OSA Converter</strong><br>
-  150+ calculators in one beautiful PWA<br>
+  <strong>Zoma Calculator and OSA Converter | حاسبة ومحوّل Zoma و OSA</strong><br>
+  150+ حاسبة في منصة PWA واحدة | 150+ calculators in one PWA<br>
+  صُنع بـ ❤️ للطلاب والمهندسين والعلماء والمزارعين<br>
   Made with ❤️ for students, engineers, scientists, and farmers
 </p>
