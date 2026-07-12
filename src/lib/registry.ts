@@ -20,6 +20,11 @@ import {
   laboratoryCalculators,
   nutritionCalculators,
 } from "./calculators/misc";
+import { homeExperimentCalculators } from "./calculators/home-experiments";
+import { molecularBiologyCalculators } from "./calculators/molecular-biology";
+import { geneticsCalculators } from "./calculators/genetics";
+import { dnaToolsCalculators } from "./calculators/dna-tools";
+import { periodicTableCalculator } from "./calculators/periodic-table-viewer";
 
 const allCalcs: Calculator[] = [
   ...basicCalculators,
@@ -36,6 +41,11 @@ const allCalcs: Calculator[] = [
   ...constructionCalculators,
   ...everydayCalculators,
   ...nutritionCalculators,
+  ...homeExperimentCalculators,
+  ...molecularBiologyCalculators,
+  ...geneticsCalculators,
+  ...dnaToolsCalculators,
+  periodicTableCalculator,
 ];
 
 export const REGISTRY: RegistryEntry[] = allCalcs.map((calc) => ({

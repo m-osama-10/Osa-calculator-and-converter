@@ -145,6 +145,46 @@ export const CATEGORIES: Category[] = [
     icon: "Wallet",
     color: "from-fuchsia-500 to-purple-600",
   },
+  {
+    id: "home-experiments",
+    names: { en: "Safe Home Experiments", ar: "تجارب منزلية آمنة" },
+    description: {
+      en: "Safe chemistry experiments using household materials (salt, vinegar, baking soda, etc.)",
+      ar: "تجارب كيميائية آمنة باستخدام مواد منزلية (ملح، خل، بيكربونات الصوديوم، إلخ)",
+    },
+    icon: "Home",
+    color: "from-lime-500 to-green-600",
+  },
+  {
+    id: "molecular-biology",
+    names: { en: "Molecular Biology", ar: "البيولوجيا الجزيئية" },
+    description: {
+      en: "DNA, RNA, protein concentration, PCR, OD260, cell culture & bioinformatics calculators",
+      ar: "حاسبات DNA و RNA وتركيز البروتين و PCR و OD260 وزراعة الخلايا والمعلوماتية الحيوية",
+    },
+    icon: "Dna",
+    color: "from-cyan-500 to-blue-600",
+  },
+  {
+    id: "genetics",
+    names: { en: "Molecular Genetics", ar: "الوراثة الجزيئية" },
+    description: {
+      en: "Hardy-Weinberg, Punnett squares, allele frequency, genetic probability & mutation rate",
+      ar: "هاردي-واينبرغ، مربعات بنيت، تردد الأليل، الاحتمالات الوراثية ومعدل الطفرات",
+    },
+    icon: "Gene",
+    color: "from-purple-500 to-indigo-600",
+  },
+  {
+    id: "dna",
+    names: { en: "DNA & RNA Tools", ar: "أدوات DNA و RNA" },
+    description: {
+      en: "DNA/RNA concentration, melting temp (Tm), molecular weight, copy number & primer design",
+      ar: "تركيز DNA/RNA، حرارة الانصهار (Tm)، الوزن الجزيئي، عدد النسخ وتصميم البرايمر",
+    },
+    icon: "Dna",
+    color: "from-teal-500 to-cyan-600",
+  },
 ];
 
 export const CATEGORY_MAP: Record<string, Category> = Object.fromEntries(

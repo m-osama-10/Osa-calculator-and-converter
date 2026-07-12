@@ -22,7 +22,11 @@ export type CategoryId =
   | "computer"
   | "datetime"
   | "construction"
-  | "everyday";
+  | "everyday"
+  | "home-experiments"
+  | "molecular-biology"
+  | "genetics"
+  | "dna";
 
 export interface Category {
   id: CategoryId;

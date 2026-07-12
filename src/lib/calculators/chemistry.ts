@@ -4,6 +4,7 @@
 
 import type { Calculator } from "../types";
 import { num, fmt, fmtSci } from "../calculator-utils";
+import { getCompoundByFormula } from "../compounds";
 
 // Compact periodic table subset (symbol -> {name, mass}) — enough for formula parser
 const ELEMENTS: Record<string, { en: string; ar: string; mass: number }> = {
@@ -208,19 +209,43 @@ export const chemistryCalculators: Calculator[] = [
       if (!f) return { results: [], error: { en: "Enter a formula", ar: "أدخل صيغة" } };
       const p = parseFormula(f);
       if (p.error) return { results: [], error: { en: p.error, ar: p.error } };
+
+      // Check if we have compound info in the database
+      const compound = getCompoundByFormula(f);
+      const baseResults = [
+        { label: { en: "Molar mass", ar: "الكتلة المولية" }, value: fmt(p.mass, 4) + " g/mol", primary: true },
+        { label: { en: "Element count", ar: "عدد العناصر" }, value: String(p.counts.length) },
+        { label: { en: "Total atoms", ar: "إجمالي الذرات" }, value: String(p.counts.reduce((s, r) => s + r.count, 0)) },
+      ];
+
+      // Add compound info card if available
+      if (compound) {
+        baseResults.push(
+          { label: { en: "━ Common Name ━", ar: "━ الاسم الشائع ━" }, value: `${compound.commonNameEn} / ${compound.commonNameAr}` },
+          { label: { en: "Density", ar: "الكثافة" }, value: compound.density != null ? compound.density + " g/cm³" : "—" },
+          { label: { en: "Melting point", ar: "درجة الانصهار" }, value: compound.meltingPoint != null ? compound.meltingPoint + " °C" : "—" },
+          { label: { en: "Boiling point", ar: "درجة الغليان" }, value: compound.boilingPoint != null && compound.boilingPoint > 0 ? compound.boilingPoint + " °C" : "—" },
+          { label: { en: "State (room temp)", ar: "الحالة (حرارة الغرفة)" }, value: compound.stateAtRoomTemp + " / " + compound.stateAr },
+        );
+        if (compound.homeUsesEn && compound.homeUsesAr) {
+          baseResults.push(
+            { label: { en: "Home uses", ar: "استخدامات منزلية" }, value: `${compound.homeUsesEn.join(", ")} / ${compound.homeUsesAr.join("، ")}` },
+          );
+        }
+      }
+
       return {
-        results: [
-          { label: { en: "Molar mass", ar: "الكتلة المولية" }, value: fmt(p.mass, 4) + " g/mol", primary: true },
-          { label: { en: "Element count", ar: "عدد العناصر" }, value: String(p.counts.length) },
-          { label: { en: "Total atoms", ar: "إجمالي الذرات" }, value: String(p.counts.reduce((s, r) => s + r.count, 0)) },
-        ],
+        results: baseResults,
         formula: `M(${f}) = ${p.counts.map((r) => `${r.count}×${r.symbol}`).join(" + ")} = ${fmt(p.mass, 4)} g/mol`,
         steps: p.counts.map((r) => ({
           description: { en: `${r.symbol} (${r.name}): ${r.count} × ${r.mass} = ${fmt(r.subMass, 4)}`, ar: `${r.symbol} (${r.nameAr}): ${r.count} × ${r.mass} = ${fmt(r.subMass, 4)}` },
         })),
-        explanation: {
-          en: "The molar mass is the sum of each element's atomic mass multiplied by its count in the formula. Parentheses are expanded recursively. Hydrate notation (·) is supported.",
-          ar: "الكتلة المولية هي مجموع كتلة كل عنصر مضروبة بعدد ذراته في الصيغة. يتم توسيع الأقواس بشكل متكرر، ورمز الإماهة (·) مدعوم.",
+        explanation: compound ? {
+          en: compound.descriptionEn + (compound.hazardLevel === "high" ? " ⚠️ HIGH HAZARD — handle with care!" : compound.hazardLevel === "medium" ? " ⚠️ Handle with care." : ""),
+          ar: compound.descriptionAr + (compound.hazardLevel === "high" ? " ⚠️ خطر عالي — تعامل بحذر شديد!" : compound.hazardLevel === "medium" ? " ⚠️ تعامل بحذر." : ""),
+        } : {
+          en: "The molar mass is the sum of each element's atomic mass multiplied by its count. Parentheses are expanded recursively. Hydrate notation (·) is supported. Try common formulas like H2O, NaCl, NaHCO3, C6H12O6 to see compound info.",
+          ar: "الكتلة المولية هي مجموع كتلة كل عنصر مضروبة بعدد ذراته. الأقواس تُوسع بشكل متكرر. رمز الإماهة (·) مدعوم. جرب صيغ شائعة مثل H2O، NaCl، NaHCO3، C6H12O6 لرؤية معلومات المركب.",
         },
       };
     },
