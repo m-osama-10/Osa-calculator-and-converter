@@ -26,7 +26,8 @@ export type CategoryId =
   | "home-experiments"
   | "molecular-biology"
   | "genetics"
-  | "dna";
+  | "dna"
+  | "agriculture";
 
 export interface Category {
   id: CategoryId;

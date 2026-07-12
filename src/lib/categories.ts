@@ -185,6 +185,16 @@ export const CATEGORIES: Category[] = [
     icon: "Dna",
     color: "from-teal-500 to-cyan-600",
   },
+  {
+    id: "agriculture",
+    names: { en: "Agriculture & Farming", ar: "الزراعة والمحاصيل" },
+    description: {
+      en: "Seedlings, seeds per feddan, fertilizers, pesticides, irrigation & crop yield calculators",
+      ar: "حاسبات الشتلات، كمية البذور للفدان، الأسمدة، المبيدات، الري وإنتاجية المحاصيل",
+    },
+    icon: "Sprout",
+    color: "from-green-500 to-lime-600",
+  },
 ];
 
 export const CATEGORY_MAP: Record<string, Category> = Object.fromEntries(
