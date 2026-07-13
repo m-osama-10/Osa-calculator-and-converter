@@ -19,7 +19,7 @@ const STORAGE_KEY = "zoma-popunder-last-shown";
 
 // Configuration — adjust these to control frequency
 const DELAY_BEFORE_LOAD_MS = 15_000;       // 15 seconds after page load
-const COOLDOWN_MINUTES = 1;                // Show at most once every 1 minute
+const COOLDOWN_MINUTES = 15;               // Show at most once every 15 minutes
 
 export function PopunderLoader() {
   useEffect(() => {
