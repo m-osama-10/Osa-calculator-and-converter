@@ -15,7 +15,6 @@ import { CalculatorModal } from "@/components/calculators/calculator-modal";
 import { KeyboardShortcutsHelp } from "@/components/layout/keyboard-shortcuts";
 import { HPFBanner } from "@/components/ads/hpf-banner";
 import { HPFBanner468 } from "@/components/ads/hpf-banner-468";
-import { NativeBanner } from "@/components/ads/native-banner";
 import { useUI, usePreferences, useFavorites, useHistory } from "@/store";
 import { CATEGORIES, REGISTRY, getPopularCalculators, searchCalculators, getByCategory } from "@/lib/registry";
 import { Icon } from "@/lib/icons";
@@ -225,7 +224,6 @@ function HomeView() {
         </div>
       </section>
 
-      <NativeBanner className="mb-8" label="Advertisement" />
 
       {/* Popular */}
       <section>
@@ -303,7 +301,6 @@ function CategoryView({ categoryId }: { categoryId: string }) {
       </div>
 
       {/* Bottom ad in category view */}
-      <NativeBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -331,7 +328,6 @@ function FavoritesView() {
       </div>
 
       {/* Ad in favorites view */}
-      <NativeBanner className="mb-6" label="Advertisement" />
 
       {favs.length === 0 ? (
         <EmptyState
@@ -447,7 +443,6 @@ function HistoryView() {
       )}
 
       {/* Bottom ad in history */}
-      <NativeBanner className="mt-6" label="Advertisement" />
     </div>
   );
 }
@@ -471,7 +466,6 @@ function SearchView({ query }: { query: string }) {
       </div>
 
       {/* Ad in search results */}
-      <NativeBanner className="mb-6" label="Advertisement" />
 
       {results.length === 0 ? (
         <EmptyState
