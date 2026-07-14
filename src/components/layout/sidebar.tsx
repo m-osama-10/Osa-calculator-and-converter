@@ -27,13 +27,22 @@ export function Sidebar() {
   const setSearchQuery = useUI((s) => s.setSearchQuery);
 
   const handleNav = (v: "home" | "favorites" | "history" | "about") => {
-    setView(v);
+    const path = typeof window !== "undefined" ? window.location.pathname : "/";
+    if (path !== "/" && path !== "") {
+      if (v === "about") {
+        window.location.assign("/about");
+      } else {
+        window.location.assign("/");
+      }
+    } else {
+      setView(v);
+    }
     setSearchQuery("");
     setSidebarOpen(false);
   };
 
   const handleCategory = (id: string) => {
-    setActiveCategory(id);
+    window.location.assign(`/category/${id}`);
     setSearchQuery("");
     setSidebarOpen(false);
   };

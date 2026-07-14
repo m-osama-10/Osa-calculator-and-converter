@@ -83,7 +83,13 @@ export function Header() {
 
         {/* Logo */}
         <button
-          onClick={() => { setView("home"); setSearchQuery(""); setLocalQuery(""); }}
+          onClick={() => {
+            if (typeof window !== "undefined" && window.location.pathname !== "/") {
+              window.location.href = "/";
+            } else {
+              setView("home"); setSearchQuery(""); setLocalQuery("");
+            }
+          }}
           className="flex items-center gap-2 px-1 sm:px-2 hover:opacity-80 transition"
           aria-label={t(lang, "appName")}
         >
@@ -183,7 +189,13 @@ export function Header() {
                 <Button
                   variant={view === "home" ? "secondary" : "ghost"}
                   size="icon"
-                  onClick={() => { setView("home"); setSearchQuery(""); setLocalQuery(""); }}
+                  onClick={() => {
+                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+                      window.location.href = "/";
+                    } else {
+                      setView("home"); setSearchQuery(""); setLocalQuery("");
+                    }
+                  }}
                   aria-label={t(lang, "home")}
                 >
                   <Home className="h-5 w-5" />
@@ -196,7 +208,14 @@ export function Header() {
                 <Button
                   variant={view === "favorites" ? "secondary" : "ghost"}
                   size="icon"
-                  onClick={() => setView("favorites")}
+                  onClick={() => {
+                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+                      window.location.href = "/";
+                      setTimeout(() => useUI.getState().setView("favorites"), 500);
+                    } else {
+                      setView("favorites");
+                    }
+                  }}
                   aria-label={t(lang, "favorites")}
                 >
                   <Star className="h-5 w-5" />
@@ -209,7 +228,14 @@ export function Header() {
                 <Button
                   variant={view === "history" ? "secondary" : "ghost"}
                   size="icon"
-                  onClick={() => setView("history")}
+                  onClick={() => {
+                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+                      window.location.href = "/";
+                      setTimeout(() => useUI.getState().setView("history"), 500);
+                    } else {
+                      setView("history");
+                    }
+                  }}
                   aria-label={t(lang, "history")}
                 >
                   <HistoryIcon className="h-5 w-5" />
