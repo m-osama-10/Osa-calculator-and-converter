@@ -612,7 +612,10 @@ function Footer() {
           <a href="/about" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "من نحن" : "About"}</a>
           <a href="/knowledge" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "مركز المعرفة" : "Knowledge Center"}</a>
           <a href="/privacy" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}</a>
-          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "تحميل التطبيق" : "Download App"}</a>
+          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition flex items-center gap-1">
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3.5a2 2 0 0 1 2 2v.5l1-.5a1.5 1.5 0 0 1 1.5 2.6L18 9l1 .6a1.5 1.5 0 0 1-1.5 2.6l-1-.5v.3a2 2 0 0 1-2 2H10a4 4 0 0 1-4-4V7.5a4 4 0 0 1 4-4h4.5zM5 8v6a5 5 0 0 0 5 5h6a1 1 0 0 1 0 2H10a7 7 0 0 1-7-7V8a1 1 0 0 1 2 0z"/></svg>
+            {lang === "ar" ? "تحميل التطبيق" : "Download App"}
+          </a>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
@@ -627,7 +630,7 @@ function Footer() {
               {t(lang, "offlineReady")}
             </span>
             <span className="opacity-50">·</span>
-            <span>{lang === "ar" ? "تطوير: محمد أسامة سيد" : "Developed by Mohamed Osama Sayed"}</span>
+            <span>{lang === "ar" ? "تطوير: محمد أسامة" : "Developed by M.Osama"}</span>
           </div>
         </div>
       </div>

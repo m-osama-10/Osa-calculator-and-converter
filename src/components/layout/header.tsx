@@ -232,9 +232,9 @@ export function Header() {
           </div>
 
           {/* Download App Button */}
-          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
+          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="hidden sm:flex">
             <Button size="sm" className="gap-1.5 h-8">
-              <Download className="h-3.5 w-3.5" />
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3.5a2 2 0 0 1 2 2v.5l1-.5a1.5 1.5 0 0 1 1.5 2.6L18 9l1 .6a1.5 1.5 0 0 1-1.5 2.6l-1-.5v.3a2 2 0 0 1-2 2H10a4 4 0 0 1-4-4V7.5a4 4 0 0 1 4-4h4.5zM5 8v6a5 5 0 0 0 5 5h6a1 1 0 0 1 0 2H10a7 7 0 0 1-7-7V8a1 1 0 0 1 2 0z"/></svg>
               {lang === "ar" ? "تحميل التطبيق" : "Get App"}
             </Button>
           </a>
