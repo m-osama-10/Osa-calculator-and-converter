@@ -4,7 +4,7 @@ import { useState, useMemo, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, Search, Star, History as HistoryIcon, TrendingUp,
-  Trash2, Clock, Calculator, ArrowRight, ArrowLeft, Zap,
+  Trash2, Clock, Calculator, ArrowRight, ArrowLeft, Zap, BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -247,6 +247,45 @@ function HomeView() {
               </Fragment>
             );
           })}
+        </div>
+      </section>
+
+      {/* Knowledge Center Section */}
+      <section className="mt-10">
+        <div className="rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 sm:p-10 text-white shadow-xl">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex rounded-2xl bg-white/20 backdrop-blur-sm p-3 mb-4">
+              <BookOpen className="h-7 w-7" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+              {lang === "ar" ? "مركز المعرفة" : "Knowledge Center"}
+            </h2>
+            <p className="text-sm sm:text-base text-white/90 mb-6">
+              {lang === "ar"
+                ? "مقالات تعليمية وأدلة شاملة لاستخدام الحاسبات وفهم المعادلات والقوانين في الكيمياء والفيزياء والرياضيات والبيولوجيا والزراعة والمزيد."
+                : "Educational articles and comprehensive guides for using calculators and understanding formulas in chemistry, physics, math, biology, agriculture, and more."}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+              {[
+                { en: "Chemistry", ar: "كيمياء" },
+                { en: "Biology", ar: "بيولوجيا" },
+                { en: "Agriculture", ar: "زراعة" },
+                { en: "Finance", ar: "مالية" },
+                { en: "Health", ar: "صحة" },
+                { en: "Math", ar: "رياضيات" },
+              ].map((tag, i) => (
+                <span key={i} className="px-3 py-1 rounded-full bg-white/15 text-xs font-medium">
+                  {lang === "ar" ? tag.ar : tag.en}
+                </span>
+              ))}
+            </div>
+            <a href="/knowledge">
+              <Button size="lg" variant="secondary" className="gap-2">
+                <BookOpen className="h-4 w-4" />
+                {lang === "ar" ? "استكشف مركز المعرفة" : "Explore Knowledge Center"}
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
