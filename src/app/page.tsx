@@ -607,6 +607,13 @@ function Footer() {
       <div className="max-w-7xl mx-auto">
         {/* Footer ad */}
         <HPFBanner className="mb-4" label="Advertisement" />
+        {/* Links */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-xs">
+          <a href="/about" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "من نحن" : "About"}</a>
+          <a href="/knowledge" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "مركز المعرفة" : "Knowledge Center"}</a>
+          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}</a>
+          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "تحميل التطبيق" : "Download App"}</a>
+        </div>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <img src="/logo.png" alt="Logo" className="h-6 w-6 rounded object-contain" />
@@ -620,7 +627,7 @@ function Footer() {
               {t(lang, "offlineReady")}
             </span>
             <span className="opacity-50">·</span>
-            <span>{t(lang, "madeWith")}</span>
+            <span>{lang === "ar" ? "تطوير: محمد أسامة سيد" : "Developed by Mohamed Osama Sayed"}</span>
           </div>
         </div>
       </div>

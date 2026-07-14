@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Moon, Sun, Menu, X, Calculator,
-  Star, History as HistoryIcon, Home,
+  Star, History as HistoryIcon, Home, BookOpen, Info, Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -218,6 +218,26 @@ export function Header() {
               <TooltipContent>{t(lang, "history")}</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+          {/* Page links */}
+          <div className="hidden lg:flex items-center gap-1">
+            <Button variant="ghost" size="sm" className="text-xs gap-1" onClick={() => window.location.href = "/knowledge"}>
+              <BookOpen className="h-4 w-4" />
+              {lang === "ar" ? "المعرفة" : "Knowledge"}
+            </Button>
+            <Button variant="ghost" size="sm" className="text-xs gap-1" onClick={() => window.location.href = "/about"}>
+              <Info className="h-4 w-4" />
+              {lang === "ar" ? "من نحن" : "About"}
+            </Button>
+          </div>
+
+          {/* Download App Button */}
+          <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
+            <Button size="sm" className="gap-1.5 h-8">
+              <Download className="h-3.5 w-3.5" />
+              {lang === "ar" ? "تحميل التطبيق" : "Get App"}
+            </Button>
+          </a>
 
           {/* Language toggle */}
           <Button
