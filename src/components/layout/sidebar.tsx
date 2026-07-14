@@ -79,14 +79,14 @@ export function Sidebar() {
         <div className="space-y-1 mt-1">
           {CATEGORIES.map((cat) => {
             const count = REGISTRY.filter((r) => r.calculator.category === cat.id).length;
-            const isActive = view === "category" && activeCategoryId === cat.id;
             return (
-              <button
+              <a
                 key={cat.id}
-                onClick={() => handleCategory(cat.id)}
+                href={`/category/${cat.id}`}
+                onClick={() => setSidebarOpen(false)}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition group",
-                  isActive
+                  typeof window !== "undefined" && window.location.pathname === `/category/${cat.id}`
                     ? "bg-secondary text-secondary-foreground"
                     : "hover:bg-accent text-muted-foreground hover:text-foreground"
                 )}
@@ -98,7 +98,7 @@ export function Sidebar() {
                 <span className="text-[10px] px-1.5 py-0.5 bg-muted rounded-full text-muted-foreground/80 shrink-0">
                   {count}
                 </span>
-              </button>
+              </a>
             );
           })}
         </div>
