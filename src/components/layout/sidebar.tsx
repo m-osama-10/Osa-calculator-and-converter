@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { X, Sparkles, Home, Star, History as HistoryIcon, Calculator, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUI, usePreferences } from "@/store";
@@ -10,11 +11,11 @@ import { t } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { id: "home", labelKey: "home", icon: Home },
-  { id: "favorites", labelKey: "favorites", icon: Star },
-  { id: "history", labelKey: "history", icon: HistoryIcon },
-  { id: "about", labelKey: "about", icon: Info },
-] as const;
+  { id: "home" as const, labelKey: "home" as const, icon: Home },
+  { id: "favorites" as const, labelKey: "favorites" as const, icon: Star },
+  { id: "history" as const, labelKey: "history" as const, icon: HistoryIcon },
+  { id: "about" as const, labelKey: "about" as const, icon: Info },
+];
 
 export function Sidebar() {
   const lang = usePreferences((s) => s.language);
@@ -22,27 +23,10 @@ export function Sidebar() {
   const setSidebarOpen = useUI((s) => s.setSidebarOpen);
   const view = useUI((s) => s.view);
   const setView = useUI((s) => s.setView);
-  const activeCategoryId = useUI((s) => s.activeCategoryId);
-  const setActiveCategory = useUI((s) => s.setActiveCategory);
   const setSearchQuery = useUI((s) => s.setSearchQuery);
 
   const handleNav = (v: "home" | "favorites" | "history" | "about") => {
-    const path = typeof window !== "undefined" ? window.location.pathname : "/";
-    if (path !== "/" && path !== "") {
-      if (v === "about") {
-        window.location.assign("/about");
-      } else {
-        window.location.assign("/");
-      }
-    } else {
-      setView(v);
-    }
-    setSearchQuery("");
-    setSidebarOpen(false);
-  };
-
-  const handleCategory = (id: string) => {
-    window.location.assign(`/category/${id}`);
+    setView(v);
     setSearchQuery("");
     setSidebarOpen(false);
   };
@@ -63,21 +47,25 @@ export function Sidebar() {
       {/* Scrollable nav + categories */}
       <nav className="flex-1 min-h-0 overflow-y-auto px-3 py-2">
         <div className="space-y-1 mb-4">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNav(item.id)}
-              className={cn(
-                "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition",
-                view === item.id
-                  ? "bg-secondary text-secondary-foreground"
-                  : "hover:bg-accent text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <item.icon className="h-4 w-4 shrink-0" />
-              <span className="truncate">{t(lang, item.labelKey)}</span>
-            </button>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const href = item.id === "about" ? "/about" : "/";
+            return (
+              <Link
+                key={item.id}
+                href={href}
+                onClick={() => handleNav(item.id)}
+                className={cn(
+                  "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition",
+                  view === item.id
+                    ? "bg-secondary text-secondary-foreground"
+                    : "hover:bg-accent text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <item.icon className="h-4 w-4 shrink-0" />
+                <span className="truncate">{t(lang, item.labelKey)}</span>
+              </Link>
+            );
+          })}
         </div>
 
         <div className="px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
@@ -89,15 +77,13 @@ export function Sidebar() {
           {CATEGORIES.map((cat) => {
             const count = REGISTRY.filter((r) => r.calculator.category === cat.id).length;
             return (
-              <a
+              <Link
                 key={cat.id}
                 href={`/category/${cat.id}`}
                 onClick={() => setSidebarOpen(false)}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition group",
-                  typeof window !== "undefined" && window.location.pathname === `/category/${cat.id}`
-                    ? "bg-secondary text-secondary-foreground"
-                    : "hover:bg-accent text-muted-foreground hover:text-foreground"
+                  "hover:bg-accent text-muted-foreground hover:text-foreground"
                 )}
               >
                 <div className={cn("rounded-lg bg-gradient-to-br p-1.5 text-white shrink-0 shadow-sm", cat.color)}>
@@ -107,7 +93,7 @@ export function Sidebar() {
                 <span className="text-[10px] px-1.5 py-0.5 bg-muted rounded-full text-muted-foreground/80 shrink-0">
                   {count}
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>

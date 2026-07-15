@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   Search, Moon, Sun, Menu, X, Calculator,
   Star, History as HistoryIcon, Home, BookOpen, Info, Download,
@@ -82,14 +83,9 @@ export function Header() {
         </Button>
 
         {/* Logo */}
-        <button
-          onClick={() => {
-            if (typeof window !== "undefined" && window.location.pathname !== "/") {
-              window.location.href = "/";
-            } else {
-              setView("home"); setSearchQuery(""); setLocalQuery("");
-            }
-          }}
+        <Link
+          href="/"
+          onClick={() => { setView("home"); setSearchQuery(""); setLocalQuery(""); }}
           className="flex items-center gap-2 px-1 sm:px-2 hover:opacity-80 transition"
           aria-label={t(lang, "appName")}
         >
@@ -102,7 +98,7 @@ export function Header() {
             <span className="font-bold text-sm">{t(lang, "appName")}</span>
             <span className="text-[10px] text-muted-foreground">{t(lang, "tagline")}</span>
           </div>
-        </button>
+        </Link>
 
         {/* Search trigger (desktop) */}
         <form onSubmit={handleSubmit} className="flex-1 max-w-2xl mx-auto hidden md:block">
@@ -186,60 +182,46 @@ export function Header() {
           <TooltipProvider delayDuration={300}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button
-                  variant={view === "home" ? "secondary" : "ghost"}
-                  size="icon"
-                  onClick={() => {
-                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
-                      window.location.href = "/";
-                    } else {
-                      setView("home"); setSearchQuery(""); setLocalQuery("");
-                    }
-                  }}
-                  aria-label={t(lang, "home")}
-                >
-                  <Home className="h-5 w-5" />
-                </Button>
+                <Link href="/">
+                  <Button
+                    variant={view === "home" ? "secondary" : "ghost"}
+                    size="icon"
+                    onClick={() => { setView("home"); setSearchQuery(""); setLocalQuery(""); }}
+                    aria-label={t(lang, "home")}
+                  >
+                    <Home className="h-5 w-5" />
+                  </Button>
+                </Link>
               </TooltipTrigger>
               <TooltipContent>{t(lang, "home")}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button
-                  variant={view === "favorites" ? "secondary" : "ghost"}
-                  size="icon"
-                  onClick={() => {
-                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
-                      window.location.href = "/";
-                      setTimeout(() => useUI.getState().setView("favorites"), 500);
-                    } else {
-                      setView("favorites");
-                    }
-                  }}
-                  aria-label={t(lang, "favorites")}
-                >
-                  <Star className="h-5 w-5" />
-                </Button>
+                <Link href="/">
+                  <Button
+                    variant={view === "favorites" ? "secondary" : "ghost"}
+                    size="icon"
+                    onClick={() => setView("favorites")}
+                    aria-label={t(lang, "favorites")}
+                  >
+                    <Star className="h-5 w-5" />
+                  </Button>
+                </Link>
               </TooltipTrigger>
               <TooltipContent>{t(lang, "favorites")}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button
-                  variant={view === "history" ? "secondary" : "ghost"}
-                  size="icon"
-                  onClick={() => {
-                    if (typeof window !== "undefined" && window.location.pathname !== "/") {
-                      window.location.href = "/";
-                      setTimeout(() => useUI.getState().setView("history"), 500);
-                    } else {
-                      setView("history");
-                    }
-                  }}
-                  aria-label={t(lang, "history")}
-                >
-                  <HistoryIcon className="h-5 w-5" />
-                </Button>
+                <Link href="/">
+                  <Button
+                    variant={view === "history" ? "secondary" : "ghost"}
+                    size="icon"
+                    onClick={() => setView("history")}
+                    aria-label={t(lang, "history")}
+                  >
+                    <HistoryIcon className="h-5 w-5" />
+                  </Button>
+                </Link>
               </TooltipTrigger>
               <TooltipContent>{t(lang, "history")}</TooltipContent>
             </Tooltip>
