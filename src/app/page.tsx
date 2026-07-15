@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, Fragment } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, Search, Star, History as HistoryIcon, TrendingUp,
@@ -200,25 +201,28 @@ function HomeView() {
           {CATEGORIES.map((cat, idx) => {
             const count = REGISTRY.filter((r) => r.calculator.category === cat.id).length;
             return (
-              <motion.button
+              <motion.div
                 key={cat.id}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.04, duration: 0.25 }}
                 whileHover={{ y: -2 }}
-                onClick={() => setActiveCategory(cat.id)}
-                className="group relative overflow-hidden rounded-2xl border bg-card p-4 sm:p-5 text-start shadow-sm hover:shadow-md transition"
               >
-                <div className={cn("inline-flex rounded-xl bg-gradient-to-br p-3 text-white shadow-md mb-3", cat.color)}>
-                  <Icon name={cat.icon} className="h-6 w-6" />
-                </div>
-                <h3 className="font-semibold text-sm sm:text-base leading-tight mb-1">{cat.names[lang]}</h3>
-                <p className="text-[11px] text-muted-foreground line-clamp-2 mb-2">{cat.description[lang]}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] text-muted-foreground/70 font-medium">{count} {t(lang, "calculators")}</span>
-                  {lang === "ar" ? <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-foreground transition" /> : <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-foreground transition" />}
-                </div>
-              </motion.button>
+                <Link
+                  href={`/category/${cat.id}`}
+                  className="group relative overflow-hidden rounded-2xl border bg-card p-4 sm:p-5 text-start shadow-sm hover:shadow-md transition block"
+                >
+                  <div className={cn("inline-flex rounded-xl bg-gradient-to-br p-3 text-white shadow-md mb-3", cat.color)}>
+                    <Icon name={cat.icon} className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-sm sm:text-base leading-tight mb-1">{cat.names[lang]}</h3>
+                  <p className="text-[11px] text-muted-foreground line-clamp-2 mb-2">{cat.description[lang]}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] text-muted-foreground/70 font-medium">{count} {t(lang, "calculators")}</span>
+                    {lang === "ar" ? <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-foreground transition" /> : <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-foreground transition" />}
+                  </div>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
@@ -232,9 +236,11 @@ function HomeView() {
             <TrendingUp className="h-5 w-5 text-rose-500" />
             {t(lang, "popular")}
           </h2>
-          <Button variant="ghost" size="sm" onClick={() => setActiveCategory("basic")} className="text-xs">
-            {t(lang, "viewAll")}
-          </Button>
+          <Link href="/category/basic">
+            <Button variant="ghost" size="sm" className="text-xs">
+              {t(lang, "viewAll")}
+            </Button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {popular.map((calc, i) => {
