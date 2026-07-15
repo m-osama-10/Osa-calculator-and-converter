@@ -289,6 +289,67 @@ function HomeView() {
         </div>
       </section>
 
+      {/* Rich Content Section — SEO */}
+      <section className="mt-10 grid lg:grid-cols-3 gap-6">
+        <div className="bg-card border rounded-2xl p-6">
+          <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+            <Calculator className="h-5 w-5 text-violet-500" />
+            {lang === "ar" ? "أدوات شاملة" : "Comprehensive Tools"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {lang === "ar"
+              ? "منصة واحدة تجمع أكثر من 150 حاسبة ومحوّل في 19 فئة مختلفة. من الحاسبات الأساسية والعلمية إلى أدوات الكيمياء والفيزياء والبيولوجيا الجزيئية والزراعة والمزيد. كل أداة مصممة لتكون سهلة الاستخدام مع عرض الصيغ وخطوات الحل."
+              : "A single platform combining 150+ calculators and converters across 19 categories. From basic and scientific calculators to chemistry, physics, molecular biology, agriculture tools, and more. Each tool is designed for ease of use with formula display and step-by-step solutions."}
+          </p>
+        </div>
+        <div className="bg-card border rounded-2xl p-6">
+          <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-fuchsia-500" />
+            {lang === "ar" ? "تعليمي ومجاني" : "Educational & Free"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {lang === "ar"
+              ? "كل حاسبة تعرض الصيغة المستخدمة وخطوات الحل والشرح. مركز المعرفة يضم مقالات تعليمية في الكيمياء والفيزياء والرياضيات والبيولوجيا والزراعة. المنصة مجانية بالكامل ولا تتطلب تسجيل دخول."
+              : "Every calculator shows the formula used, calculation steps, and explanations. The Knowledge Center features educational articles in chemistry, physics, math, biology, and agriculture. The platform is completely free with no registration required."}
+          </p>
+        </div>
+        <div className="bg-card border rounded-2xl p-6">
+          <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-indigo-500" />
+            {lang === "ar" ? "ثنائي اللغة" : "Bilingual & Offline"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {lang === "ar"
+              ? "المنصة تدعم العربية والإنجليزية بالكامل مع تبديل تلقائي للاتجاه RTL/LTR. تعمل كتطبيق ويب تقدمي (PWA) ويمكن تثبيتها على جهازك واستخدامها بدون إنترنت. جميع البيانات تُحفظ محليًا على جهازك."
+              : "The platform fully supports Arabic and English with automatic RTL/LTR direction switching. Works as a Progressive Web App (PWA) that can be installed and used offline. All data is stored locally on your device."}
+          </p>
+        </div>
+      </section>
+
+      {/* About snippet for SEO */}
+      <section className="mt-10 bg-muted/30 border rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-3">
+          {lang === "ar" ? "عن منصة Zoma Calculator and OSA Converter" : "About Zoma Calculator and OSA Converter"}
+        </h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            {lang === "ar"
+              ? "Zoma Calculator and OSA Converter هي منصة إلكترونية شاملة تجمع مئات الحاسبات والمحولات في مكان واحد. صُممت المنصة لخدمة الطلاب والباحثين والمهندسين والمزارعين وكل من يحتاج إلى حسابات علمية ويومية سريعة ودقيقة. تشمل المنصة حاسبات أساسية وعلمية، محولات وحدات شاملة، أدوات كيميائية مثل حاسبة الكتلة المولية ودرجة الحموضة pH، أدوات فيزيائية، حاسبات مالية مثل القرض والفائدة المركبة، أدوات بيولوجيا جزيئية مثل حساب تركيز DNA وعدد نسخ PCR، وحاسبات زراعية مثل كمية البذور والأسمدة والمبيدات للفدان."
+              : "Zoma Calculator and OSA Converter is a comprehensive online platform combining hundreds of calculators and converters in one place. Designed for students, researchers, engineers, farmers, and anyone needing fast, accurate scientific and everyday calculations. The platform includes basic and scientific calculators, comprehensive unit converters, chemistry tools like molar mass and pH calculators, physics tools, financial calculators like loan EMI and compound interest, molecular biology tools like DNA concentration and PCR copy number, and agricultural calculators for seeds, fertilizers, and pesticides per feddan."}
+          </p>
+          <p>
+            {lang === "ar"
+              ? "تتميز المنصة بالدعم الكامل للغة العربية والإنجليزية مع التكيف التلقائي للاتجاه من اليمين لليسار. تعمل كتطبيق ويب تقدمي (PWA) يمكن تثبيته على الهاتف أو الكمبيوتر واستخدامه بدون اتصال بالإنترنت. جميع العمليات الحسابية تتم محليًا على جهاز المستخدم، مما يضمن الخصوصية الكاملة وعدم الحاجة لإرسال أي بيانات للخوادم."
+              : "The platform features full Arabic and English support with automatic right-to-left direction adaptation. It works as a Progressive Web App (PWA) that can be installed on phones or computers and used offline. All calculations run locally on the user's device, ensuring complete privacy with no data sent to servers."}
+          </p>
+          <p>
+            {lang === "ar"
+              ? "يضم مركز المعرفة في المنصة مقالات تعليمية شاملة تشرح كيفية استخدام الحاسبات المختلفة، وتشرح المعادلات والقوانين العلمية، وتقدم أمثلة عملية في الكيمياء والفيزياء والرياضيات والبيولوجيا والزراعة والمالية. تم تطوير المنصة بواسطة محمد أسامة سيد، خريج بكالوريوس التكنولوجيا الحيوية من جامعة أسيوط."
+              : "The platform's Knowledge Center includes comprehensive educational articles explaining how to use various calculators, explaining scientific formulas and laws, and providing practical examples in chemistry, physics, mathematics, biology, agriculture, and finance. The platform was developed by Mohamed Osama Sayed, a Biotechnology graduate from Assiut University."}
+          </p>
+        </div>
+      </section>
+
     </div>
   );
 }
@@ -648,9 +709,13 @@ function Footer() {
         <HPFBanner className="mb-4" label="Advertisement" />
         {/* Links */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-xs">
+          <a href="/" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "الرئيسية" : "Home"}</a>
           <a href="/about" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "من نحن" : "About"}</a>
+          <a href="/contact" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "اتصل بنا" : "Contact"}</a>
           <a href="/knowledge" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "مركز المعرفة" : "Knowledge Center"}</a>
           <a href="/privacy" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}</a>
+          <a href="/terms" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "الشروط والأحكام" : "Terms"}</a>
+          <a href="/disclaimer" className="text-muted-foreground hover:text-foreground transition">{lang === "ar" ? "إخلاء المسؤولية" : "Disclaimer"}</a>
           <a href="https://apkpure.com/p/com.osa.calculator" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition flex items-center gap-1">
             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3.5a2 2 0 0 1 2 2v.5l1-.5a1.5 1.5 0 0 1 1.5 2.6L18 9l1 .6a1.5 1.5 0 0 1-1.5 2.6l-1-.5v.3a2 2 0 0 1-2 2H10a4 4 0 0 1-4-4V7.5a4 4 0 0 1 4-4h4.5zM5 8v6a5 5 0 0 0 5 5h6a1 1 0 0 1 0 2H10a7 7 0 0 1-7-7V8a1 1 0 0 1 2 0z"/></svg>
             {lang === "ar" ? "تحميل التطبيق" : "Download App"}
