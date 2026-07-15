@@ -1,5 +1,6 @@
 "use client";
 
+import { CategoryLayout } from "@/components/layout/category-layout";
 import { Github, Linkedin, Facebook, Download, Sparkles, Calculator, Globe, Smartphone, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePreferences } from "@/store";
@@ -25,6 +26,7 @@ export default function AboutPage() {
   const lang = usePreferences((s) => s.language);
 
   return (
+    <CategoryLayout>
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-8">
         {/* Hero */}
@@ -145,5 +147,6 @@ export default function AboutPage() {
         </section>
       </div>
     </div>
+    </CategoryLayout>
   );
 }

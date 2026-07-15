@@ -1,6 +1,8 @@
 "use client";
+import { CategoryLayout } from "@/components/layout/category-layout";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import { ArrowRight, ArrowLeft, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -282,7 +284,7 @@ const ARTICLE_CONTENT: Record<string, {
 
 export default function ArticlePage() {
   const params = useParams();
-  const router = useRouter();
+  
   const lang = usePreferences((s) => s.language);
   const isAr = lang === "ar";
 
@@ -291,32 +293,38 @@ export default function ArticlePage() {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+    <CategoryLayout>
+    <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
           <p className="text-sm text-muted-foreground mb-4">
             {isAr ? "المقال غير موجود" : "Article not found"}
           </p>
-          <Button onClick={() => router.push("/knowledge")} variant="outline" size="sm">
-            {isAr ? "العودة لمركز المعرفة" : "Back to Knowledge Center"}
-          </Button>
+          <Link href="/knowledge">
+            <Button variant="outline" size="sm">
+              {isAr ? "العودة لمركز المعرفة" : "Back to Knowledge Center"}
+            </Button>
+          </Link>
         </div>
       </div>
-    );
-  }
+    </CategoryLayout>
+  );
+}
 
   return (
+    <CategoryLayout>
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-        <Button
-          onClick={() => router.push("/knowledge")}
-          variant="ghost"
-          size="sm"
-          className="mb-4 gap-1"
-        >
-          {isAr ? <ArrowRight className="h-3 w-3" /> : <ArrowLeft className="h-3 w-3" />}
-          {isAr ? "العودة للمقالات" : "Back to Articles"}
-        </Button>
+        <Link href="/knowledge">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="mb-4 gap-1"
+          >
+            {isAr ? <ArrowRight className="h-3 w-3" /> : <ArrowLeft className="h-3 w-3" />}
+            {isAr ? "العودة للمقالات" : "Back to Articles"}
+          </Button>
+        </Link>
 
         <Badge variant="secondary" className="mb-3">
           {isAr ? article.categoryAr : article.category}
@@ -340,11 +348,14 @@ export default function ArticlePage() {
           <p className="text-xs text-muted-foreground mb-4">
             {isAr ? "استخدم الحاسبات العملية في المنصة" : "Use the practical calculators in the platform"}
           </p>
-          <Button onClick={() => router.push("/")} size="sm">
-            {isAr ? "تصفح الحاسبات" : "Browse Calculators"}
-          </Button>
+          <Link href="/">
+            <Button size="sm">
+              {isAr ? "تصفح الحاسبات" : "Browse Calculators"}
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
+    </CategoryLayout>
   );
 }

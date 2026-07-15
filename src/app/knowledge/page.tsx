@@ -1,4 +1,5 @@
 "use client";
+import { CategoryLayout } from "@/components/layout/category-layout";
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
@@ -172,6 +173,7 @@ export default function KnowledgePage() {
   }, [query, activeCat]);
 
   return (
+    <CategoryLayout>
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
@@ -275,5 +277,6 @@ export default function KnowledgePage() {
         )}
       </div>
     </div>
+    </CategoryLayout>
   );
 }

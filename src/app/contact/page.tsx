@@ -1,4 +1,5 @@
 "use client";
+import { CategoryLayout } from "@/components/layout/category-layout";
 
 import { useState } from "react";
 import { Mail, MessageSquare, Send, Github, Linkedin, Facebook } from "lucide-react";
@@ -21,6 +22,7 @@ export default function ContactPage() {
   };
 
   return (
+    <CategoryLayout>
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <h1 className="text-3xl font-bold mb-2">
@@ -131,5 +133,6 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    </CategoryLayout>
   );
 }

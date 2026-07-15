@@ -229,14 +229,18 @@ export function Header() {
 
           {/* Page links */}
           <div className="hidden lg:flex items-center gap-1">
-            <Button variant="ghost" size="sm" className="text-xs gap-1" onClick={() => window.location.href = "/knowledge"}>
-              <BookOpen className="h-4 w-4" />
-              {lang === "ar" ? "المعرفة" : "Knowledge"}
-            </Button>
-            <Button variant="ghost" size="sm" className="text-xs gap-1" onClick={() => window.location.href = "/about"}>
-              <Info className="h-4 w-4" />
-              {lang === "ar" ? "من نحن" : "About"}
-            </Button>
+            <Link href="/knowledge">
+              <Button variant="ghost" size="sm" className="text-xs gap-1">
+                <BookOpen className="h-4 w-4" />
+                {lang === "ar" ? "المعرفة" : "Knowledge"}
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button variant="ghost" size="sm" className="text-xs gap-1">
+                <Info className="h-4 w-4" />
+                {lang === "ar" ? "من نحن" : "About"}
+              </Button>
+            </Link>
           </div>
 
           {/* Download App Button */}

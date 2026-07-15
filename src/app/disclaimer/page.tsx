@@ -1,4 +1,5 @@
 "use client";
+import { CategoryLayout } from "@/components/layout/category-layout";
 
 import { usePreferences } from "@/store";
 
@@ -27,6 +28,7 @@ export default function DisclaimerPage() {
   ];
 
   return (
+    <CategoryLayout>
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <h1 className="text-3xl font-bold mb-2">
@@ -45,5 +47,6 @@ export default function DisclaimerPage() {
         </div>
       </div>
     </div>
+    </CategoryLayout>
   );
 }
